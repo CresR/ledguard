@@ -32,7 +32,7 @@ const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
             }
           )}
         >
-          Review
+          Podsumowanie
         </Heading>
       </div>
       {isOpen && previousStepsCompleted && (
@@ -40,12 +40,12 @@ const Review = ({ cart }: { cart: HttpTypes.StoreCart }) => {
           <div className="flex items-start gap-x-1 w-full mb-6">
             <div className="w-full">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                By clicking the Place Order button, you confirm that you have
-                read, understand and accept our{" "}
+                Klikając „Złóż zamówienie" potwierdzasz, że zapoznałeś się i akceptujesz{" "}
                 <a href="/pl/regulamin" className="underline">Regulamin</a>,{" "}
-                <a href="/pl/zwroty" className="underline">Zwroty i reklamacje</a>{" "}
-                and acknowledge that you have read{" "}
-                <a href="/pl/polityka-prywatnosci" className="underline">LedGuard&apos;s Privacy Policy</a>.
+                <a href="/pl/zwroty" className="underline">Politykę zwrotów</a>{" "}
+                oraz{" "}
+                <a href="/pl/polityka-prywatnosci" className="underline">Politykę prywatności</a>{" "}
+                LedGuard.
               </Text>
             </div>
           </div>

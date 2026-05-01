@@ -40,7 +40,7 @@ const PaymentButton: React.FC<PaymentButtonProps> = ({
         <ManualTestPaymentButton notReady={notReady} data-testid={dataTestId} />
       )
     default:
-      return <Button disabled>Select a payment method</Button>
+      return <Button disabled>Wybierz metodę płatności</Button>
   }
 }
 
@@ -56,43 +56,41 @@ const StripePaymentButton = ({
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const onPaymentCompleted = async () => {
-    await placeOrder()
-      .catch((err) => {
-        setErrorMessage(err.message)
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
-  }
-
   const stripe = useStripe()
   const elements = useElements()
-  const card = elements?.getElement("card")
 
   const session = cart.payment_collection?.payment_sessions?.find(
     (s) => s.status === "pending"
   )
 
-  const disabled = !stripe || !elements ? true : false
-
   const handlePayment = async () => {
-    setSubmitting(true)
+    if (!stripe || !elements || !session) {
+      return
+    }
 
-    if (!stripe || !elements || !card || !cart) {
+    setSubmitting(true)
+    setErrorMessage(null)
+
+    const { error: submitError } = await elements.submit()
+    if (submitError) {
+      setErrorMessage(submitError.message || "Błąd walidacji płatności")
       setSubmitting(false)
       return
     }
 
-    await stripe
-      .confirmCardPayment(session?.data.client_secret as string, {
-        payment_method: {
-          card: card,
+    const { error, paymentIntent } = await stripe.confirmPayment({
+      elements,
+      clientSecret: session.data.client_secret as string,
+      confirmParams: {
+        return_url: `${window.location.origin}${window.location.pathname.replace("/checkout", "/order/confirmed")}`,
+        payment_method_data: {
           billing_details: {
             name:
-              cart.billing_address?.first_name +
+              (cart.billing_address?.first_name ?? "") +
               " " +
-              cart.billing_address?.last_name,
+              (cart.billing_address?.last_name ?? ""),
+            email: cart.email ?? undefined,
+            phone: cart.billing_address?.phone ?? undefined,
             address: {
               city: cart.billing_address?.city ?? undefined,
               country: cart.billing_address?.country_code ?? undefined,
@@ -101,47 +99,47 @@ const StripePaymentButton = ({
               postal_code: cart.billing_address?.postal_code ?? undefined,
               state: cart.billing_address?.province ?? undefined,
             },
-            email: cart.email,
-            phone: cart.billing_address?.phone ?? undefined,
           },
         },
-      })
-      .then(({ error, paymentIntent }) => {
-        if (error) {
-          const pi = error.payment_intent
+      },
+      redirect: "if_required",
+    })
 
-          if (
-            (pi && pi.status === "requires_capture") ||
-            (pi && pi.status === "succeeded")
-          ) {
-            onPaymentCompleted()
-          }
+    if (error) {
+      if (
+        error.payment_intent?.status === "requires_capture" ||
+        error.payment_intent?.status === "succeeded"
+      ) {
+        await placeOrder().catch((err) => setErrorMessage(err.message))
+      } else {
+        setErrorMessage(error.message || "Błąd płatności")
+      }
+      setSubmitting(false)
+      return
+    }
 
-          setErrorMessage(error.message || null)
-          return
-        }
-
-        if (
-          (paymentIntent && paymentIntent.status === "requires_capture") ||
-          paymentIntent.status === "succeeded"
-        ) {
-          return onPaymentCompleted()
-        }
-
-        return
-      })
+    if (
+      paymentIntent?.status === "requires_capture" ||
+      paymentIntent?.status === "succeeded"
+    ) {
+      await placeOrder()
+        .catch((err) => setErrorMessage(err.message))
+        .finally(() => setSubmitting(false))
+    } else {
+      setSubmitting(false)
+    }
   }
 
   return (
     <>
       <Button
-        disabled={disabled || notReady}
+        disabled={!stripe || !elements || notReady}
         onClick={handlePayment}
         size="large"
         isLoading={submitting}
         data-testid={dataTestId}
       >
-        Place order
+        Złóż zamówienie
       </Button>
       <ErrorMessage
         error={errorMessage}
@@ -155,20 +153,11 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
   const [submitting, setSubmitting] = useState(false)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  const onPaymentCompleted = async () => {
-    await placeOrder()
-      .catch((err) => {
-        setErrorMessage(err.message)
-      })
-      .finally(() => {
-        setSubmitting(false)
-      })
-  }
-
-  const handlePayment = () => {
+  const handlePayment = async () => {
     setSubmitting(true)
-
-    onPaymentCompleted()
+    await placeOrder()
+      .catch((err) => setErrorMessage(err.message))
+      .finally(() => setSubmitting(false))
   }
 
   return (
@@ -180,7 +169,7 @@ const ManualTestPaymentButton = ({ notReady }: { notReady: boolean }) => {
         size="large"
         data-testid="submit-order-button"
       >
-        Place order
+        Złóż zamówienie
       </Button>
       <ErrorMessage
         error={errorMessage}

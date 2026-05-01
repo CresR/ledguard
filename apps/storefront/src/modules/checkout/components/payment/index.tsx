@@ -32,8 +32,6 @@ const Payment = ({
 
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [cardBrand, setCardBrand] = useState<string | null>(null)
-  const [cardComplete, setCardComplete] = useState(false)
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(
     activeSession?.provider_id ?? ""
   )
@@ -124,7 +122,7 @@ const Payment = ({
             }
           )}
         >
-          Payment
+          Płatność
           {!isOpen && paymentReady && <CheckCircleSolid />}
         </Heading>
         {!isOpen && paymentReady && (
@@ -134,7 +132,7 @@ const Payment = ({
               className="text-ui-fg-interactive hover:text-ui-fg-interactive-hover"
               data-testid="edit-payment-button"
             >
-              Edit
+              Edytuj
             </button>
           </Text>
         )}
@@ -154,9 +152,6 @@ const Payment = ({
                         paymentProviderId={paymentMethod.id}
                         selectedPaymentOptionId={selectedPaymentMethod}
                         paymentInfoMap={paymentInfoMap}
-                        setCardBrand={setCardBrand}
-                        setError={setError}
-                        setCardComplete={setCardComplete}
                       />
                     ) : (
                       <PaymentContainer
@@ -174,13 +169,13 @@ const Payment = ({
           {paidByGiftcard && (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
+                Metoda płatności
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                Karta podarunkowa
               </Text>
             </div>
           )}
@@ -195,15 +190,12 @@ const Payment = ({
             className="mt-6"
             onClick={handleSubmit}
             isLoading={isLoading}
-            disabled={
-              (isStripeLike(selectedPaymentMethod) && !cardComplete) ||
-              (!selectedPaymentMethod && !paidByGiftcard)
-            }
+            disabled={!selectedPaymentMethod && !paidByGiftcard}
             data-testid="submit-payment-button"
           >
             {!activeSession && isStripeLike(selectedPaymentMethod)
-              ? " Enter card details"
-              : "Continue to review"}
+              ? "Przejdź do danych płatności"
+              : "Przejdź do podsumowania"}
           </Button>
         </div>
 
@@ -212,7 +204,7 @@ const Payment = ({
             <div className="flex items-start gap-x-1 w-full">
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Payment method
+                  Metoda płatności
                 </Text>
                 <Text
                   className="txt-medium text-ui-fg-subtle"
@@ -224,7 +216,7 @@ const Payment = ({
               </div>
               <div className="flex flex-col w-1/3">
                 <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                  Payment details
+                  Szczegóły płatności
                 </Text>
                 <div
                   className="flex gap-2 txt-medium text-ui-fg-subtle items-center"
@@ -236,9 +228,7 @@ const Payment = ({
                     )}
                   </Container>
                   <Text>
-                    {isStripeLike(selectedPaymentMethod) && cardBrand
-                      ? cardBrand
-                      : "Another step will appear"}
+                    {paymentInfoMap[selectedPaymentMethod]?.title || "Stripe"}
                   </Text>
                 </div>
               </div>
@@ -246,13 +236,13 @@ const Payment = ({
           ) : paidByGiftcard ? (
             <div className="flex flex-col w-1/3">
               <Text className="txt-medium-plus text-ui-fg-base mb-1">
-                Payment method
+                Metoda płatności
               </Text>
               <Text
                 className="txt-medium text-ui-fg-subtle"
                 data-testid="payment-method-summary"
               >
-                Gift card
+                Karta podarunkowa
               </Text>
             </div>
           ) : null}
