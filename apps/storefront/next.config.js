@@ -33,6 +33,14 @@ const nextConfig = {
         hostname: "localhost",
       },
       {
+        protocol: "http",
+        hostname: "*.sslip.io",
+      },
+      {
+        protocol: "https",
+        hostname: "evsun.pl",
+      },
+      {
         protocol: "https",
         hostname: "*.s3.*.amazonaws.com",
       },
