@@ -5,6 +5,7 @@ import Script from "next/script"
 import "styles/globals.css"
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] })
 
@@ -23,6 +24,11 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="pl" data-mode="light" className={inter.className}>
       <head>
+        {/* Consent Mode v2 — defaults denied before user accepts cookie banner */}
+        <Script id="consent-default" strategy="beforeInteractive">
+          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});`}
+        </Script>
         {GA_ID && (
           <>
             <Script
@@ -30,12 +36,14 @@ export default function RootLayout(props: { children: React.ReactNode }) {
               strategy="afterInteractive"
             />
             <Script id="ga4-init" strategy="afterInteractive">
-              {`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${GA_ID}', { anonymize_ip: true });`}
+              {`gtag('js',new Date());gtag('config','${GA_ID}');`}
             </Script>
           </>
+        )}
+        {META_PIXEL_ID && (
+          <Script id="meta-pixel" strategy="afterInteractive">
+            {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('consent','revoke');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
+          </Script>
         )}
       </head>
       <body>

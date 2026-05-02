@@ -27,7 +27,7 @@ function escapeXml(str: string): string {
 }
 
 function formatPrice(amount: number, currency: string): string {
-  const formatted = (amount).toFixed(2)
+  const formatted = (amount / 100).toFixed(2)
   return `${formatted} ${currency.toUpperCase()}`
 }
 

@@ -32,7 +32,7 @@ export async function GET() {
         description: (product.description || product.subtitle || product.title).slice(0, 500),
         link: `${STORE_URL}/pl/products/${product.handle}`,
         image_link: product.thumbnail || `${STORE_URL}/logo.png`,
-        price: plnPrice ? `${plnPrice.amount.toFixed(2)} PLN` : undefined,
+        price: plnPrice ? `${(plnPrice.amount / 100).toFixed(2)} PLN` : undefined,
         availability: "in stock",
         condition: "new",
         brand: "EVSUN",

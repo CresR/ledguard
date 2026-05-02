@@ -4,6 +4,18 @@ import { useEffect, useState } from "react"
 
 const COOKIE_KEY = "ledguard_cookie_consent"
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void
+    fbq?: (...args: unknown[]) => void
+  }
+}
+
+function grantConsent() {
+  window.gtag?.("consent", "update", { analytics_storage: "granted", ad_storage: "granted" })
+  window.fbq?.("consent", "grant")
+}
+
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
 
@@ -11,12 +23,15 @@ export default function CookieBanner() {
     const consent = localStorage.getItem(COOKIE_KEY)
     if (!consent) {
       setVisible(true)
+    } else if (consent === "accepted") {
+      grantConsent()
     }
   }, [])
 
   const accept = () => {
     localStorage.setItem(COOKIE_KEY, "accepted")
     setVisible(false)
+    grantConsent()
   }
 
   const decline = () => {

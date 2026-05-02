@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import B2BForm from "@modules/b2b/b2b-form"
 
 export const metadata: Metadata = {
   title: "Oferta B2B — LedGuard",
@@ -69,30 +70,17 @@ export default function B2BPage() {
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="bg-brand-navy py-16">
-        <div className="content-container text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">Zainteresowany ofertą B2B?</h2>
-          <p className="text-white/70 mb-8 max-w-xl mx-auto">
-            Napisz do nas z numerem NIP/VAT EU i informacją o planowanym wolumenie.
-            Odpiszemy w ciągu 24 godzin z indywidualną ofertą.
+      {/* Contact form */}
+      <section id="formularz" className="py-16">
+        <div className="content-container max-w-2xl mx-auto">
+          <h2 className="text-2xl font-bold text-brand-navy text-center mb-2">Złóż zapytanie B2B</h2>
+          <p className="text-grey-50 text-center mb-8 text-sm">
+            Wypełnij formularz — odpiszemy w ciągu 24 godzin z indywidualną ofertą hurtową.
           </p>
-          <div className="flex flex-col small:flex-row gap-4 justify-center">
-            <a
-              href="mailto:b2b@ledguard.pl"
-              className="bg-brand-cyan hover:bg-brand-cyan-dark text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
-              Napisz: b2b@ledguard.pl
-            </a>
-            <a
-              href="tel:+48XXXXXXXXX"
-              className="border border-white/30 hover:border-white/60 text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-            >
-              Zadzwoń do nas
-            </a>
-          </div>
-          <p className="text-white/40 text-sm mt-6">
-            EVS sp. z o.o. · ul. Bolesława Prusa 7A, Kleosin · NIP: 5423491568
+          <B2BForm />
+          <p className="text-grey-40 text-xs text-center mt-4">
+            EVS sp. z o.o. · ul. Bolesława Prusa 7A, Kleosin · NIP: 5423491568 ·{" "}
+            <a href="mailto:b2b@ledguard.pl" className="hover:text-brand-cyan">b2b@ledguard.pl</a>
           </p>
         </div>
       </section>
