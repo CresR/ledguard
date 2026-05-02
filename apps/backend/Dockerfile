@@ -20,7 +20,7 @@ RUN addgroup -S medusa && adduser -S medusa -G medusa
 COPY --from=builder /app/.medusa/server .
 
 # Install production deps inside the .medusa/server directory
-RUN NODE_ENV=development npm install --legacy-peer-deps
+RUN NODE_ENV=development npm install --legacy-peer-deps --omit=dev
 
 COPY docker-entrypoint.sh ./docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh && chown medusa:medusa docker-entrypoint.sh
