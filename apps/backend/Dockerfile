@@ -23,7 +23,7 @@ COPY --from=builder /app/.medusa/server .
 RUN NODE_ENV=development npm install --legacy-peer-deps --omit=dev
 
 COPY docker-entrypoint.sh ./docker-entrypoint.sh
-RUN chmod +x docker-entrypoint.sh && chown medusa:medusa docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh && chown -R medusa:medusa /app
 
 USER medusa
 
