@@ -24,11 +24,20 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="pl" data-mode="light" className={inter.className}>
       <head>
-        {/* Consent Mode v2 — defaults denied before user accepts cookie banner */}
-        <Script id="consent-default" strategy="beforeInteractive">
-          {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});`}
-        </Script>
+        {/* Consent Mode v2 — plain script to avoid Next.js Script hydration mismatch */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wait_for_update':500});`,
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: `{"@context":"https://schema.org","@type":"Organization","name":"LedGuard / EVS sp. z o.o.","url":"https://ledguard.pl","logo":"https://ledguard.pl/logo.png","email":"kontakt@ledguard.pl","address":{"@type":"PostalAddress","streetAddress":"ul. Bolesława Prusa 7A","addressLocality":"Kleosin","postalCode":"16-001","addressCountry":"PL"},"taxID":"5423491568","sameAs":["https://ledguard.eu"]}`,
+          }}
+        />
+      </head>
+      <body>
         {GA_ID && (
           <>
             <Script
@@ -45,11 +54,6 @@ gtag('consent','default',{'analytics_storage':'denied','ad_storage':'denied','wa
             {`!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('consent','revoke');fbq('init','${META_PIXEL_ID}');fbq('track','PageView');`}
           </Script>
         )}
-      </head>
-      <body>
-        <Script id="org-schema" type="application/ld+json">
-          {`{"@context":"https://schema.org","@type":"Organization","name":"LedGuard / EVS sp. z o.o.","url":"https://ledguard.pl","logo":"https://ledguard.pl/logo.png","email":"kontakt@ledguard.pl","address":{"@type":"PostalAddress","streetAddress":"ul. Bolesława Prusa 7A","addressLocality":"Kleosin","postalCode":"16-001","addressCountry":"PL"},"taxID":"5423491568","sameAs":["https://ledguard.eu"]}`}
-        </Script>
         <main className="relative">{props.children}</main>
       </body>
     </html>
