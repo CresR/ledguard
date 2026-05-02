@@ -284,7 +284,7 @@ export default function BlueCare() {
                   <circle cx="12" cy="12" r="3" />
                 </svg>
               </div>
-              <h4>Ochrona receptorów melanopsynowych</h4>
+              <h3>Ochrona receptorów melanopsynowych</h3>
               <p>
                 Ograniczenie emisji w zakresie &lt;450 nm zmniejsza stymulację receptorów
                 melanopsynowych odpowiedzialnych za regulację rytmu dobowego i hamowanie melatoniny.
@@ -304,7 +304,7 @@ export default function BlueCare() {
                   <polyline points="12 6 12 12 16 14" />
                 </svg>
               </div>
-              <h4>Wsparcie rytmu dobowego</h4>
+              <h3>Wsparcie rytmu dobowego</h3>
               <p>
                 Naturalne światło ma różną temperaturę barwową w ciągu dnia. Blue Care naśladuje
                 ten cykl — chłodniejsze w południe, cieplejsze wieczorem, minimalizując zaburzenia
@@ -324,7 +324,7 @@ export default function BlueCare() {
                   <path d="M3 12h4l3-9 4 18 3-9h4" />
                 </svg>
               </div>
-              <h4>Redukcja zmęczenia oczu (CVS)</h4>
+              <h3>Redukcja zmęczenia oczu (CVS)</h3>
               <p>
                 Computer Vision Syndrome — zmęczenie oczu przy długiej pracy z ekranami. Blue Care
                 łącznie z non-flicker zmniejsza skurcze akomodacyjne i uczucie suchości oczu.
@@ -344,22 +344,22 @@ export default function BlueCare() {
           <div className="for-grid">
             <div className="for-card">
               <span className="for-card__ico">👶</span>
-              <h4>Dzieci i niemowlęta</h4>
+              <h3>Dzieci i niemowlęta</h3>
               <p>Rozwijający się wzrok szczególnie wrażliwy na niebieskie spektrum. Pokoje dziecięce, żłobki, szkoły.</p>
             </div>
             <div className="for-card">
               <span className="for-card__ico">👴</span>
-              <h4>Seniorzy</h4>
+              <h3>Seniorzy</h3>
               <p>Zmniejszona zdolność filtrowania niebieskiego przez soczewkę oka. Domy opieki, geriatria.</p>
             </div>
             <div className="for-card">
               <span className="for-card__ico">💻</span>
-              <h4>Pracownicy biurowi</h4>
+              <h3>Pracownicy biurowi</h3>
               <p>8+ godzin dziennie przy ekranie i sztucznym oświetleniu. Redukcja CVS i poprawia koncentrację.</p>
             </div>
             <div className="for-card">
               <span className="for-card__ico">🏥</span>
-              <h4>Pacjenci szpitalni</h4>
+              <h3>Pacjenci szpitalni</h3>
               <p>Oświetlenie sal chorych. Wieczorna ekspozycja na niebieskie zaburza sen i regenerację — Blue Care minimalizuje ten efekt.</p>
             </div>
           </div>

@@ -80,10 +80,8 @@ export default function RealizacjeContent() {
         <div className="shell">
 
           {/* FEATURED */}
-          <LocalizedClientLink href="/realizacje" className="cs-featured">
-            <div className="cs-featured__ph ph ph--photo">
-              <div className="ph__label">Zdjęcie: sala szpitalna / 1200×720</div>
-            </div>
+          <article className="cs-featured" style={{ cursor: "default" }}>
+            <div className="cs-featured__ph ph ph--photo" />
             <div className="cs-featured__body">
               <div className="cs-featured__sector">Healthcare · Szpital powiatowy · Mazowieckie</div>
               <h2>280 opraw EVLN-DL w oddziale wewnętrznym — monitoring IAQ 60 dni</h2>
@@ -117,14 +115,12 @@ export default function RealizacjeContent() {
                 <span><strong>Dokumentacja:</strong> PZH, CE, IAQ</span>
               </div>
             </div>
-          </LocalizedClientLink>
+          </article>
 
           {/* GRID */}
           <div className="cs-grid">
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Kuchnia restauracyjna / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Gastronomia · Sieć restauracji</div>
                 <h3>Kuchnie produkcyjne — 12 lokali, EVLN-VL IP65</h3>
@@ -139,15 +135,13 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Warszawa × 12</strong> · 2025</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
 
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Open space biurowy / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Biura · Centrala korporacji</div>
                 <h3>Open space 4200 m² — panele EVLN-PL Blue Care</h3>
@@ -162,15 +156,13 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Kraków</strong> · 2024</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
 
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Hotel lobby / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Hotele · Hotel 4★</div>
                 <h3>Pokoje i SPA — 180 opraw EVLN-DL + natynkowe</h3>
@@ -185,15 +177,13 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Sopot</strong> · 2024</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
 
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Hala produkcyjna / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Produkcja · Zakład farmaceutyczny</div>
                 <h3>Hala klasy czystości ISO 7 — EVLN-PL + HighBay</h3>
@@ -208,15 +198,13 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Poznań</strong> · 2024</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
 
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Sala szkolna / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Edukacja · Szkoła podstawowa</div>
                 <h3>Klasy i świetlice — 96 opraw EVLN-PL, 18 sal</h3>
@@ -231,15 +219,13 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Łódź</strong> · 2025</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
 
-            <LocalizedClientLink href="/realizacje" className="cs-card">
-              <div className="cs-card__ph ph ph--photo">
-                <div className="ph__label">Klinika stomatologiczna / 1200×900</div>
-              </div>
+            <article className="cs-card" style={{ cursor: "default" }}>
+              <div className="cs-card__ph ph ph--photo" />
               <div className="cs-card__body">
                 <div className="cs-card__sector">Healthcare · Sieć klinik stomatologicznych</div>
                 <h3>Gabinety stomatologiczne — 8 klinik, 210 opraw</h3>
@@ -254,10 +240,10 @@ export default function RealizacjeContent() {
                 </div>
                 <div className="cs-card__meta">
                   <span><strong>Polska × 8</strong> · 2025</span>
-                  <span>Czytaj →</span>
+                  <span>Szczegóły wkrótce</span>
                 </div>
               </div>
-            </LocalizedClientLink>
+            </article>
           </div>
 
           {/* PAGINATION */}

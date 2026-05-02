@@ -214,7 +214,7 @@ export default function BlogContent() {
                     alert("Dziękujemy za zapis!")
                   }}
                 >
-                  <input type="email" required placeholder="Twój e-mail" />
+                  <input type="email" required placeholder="Twój e-mail" aria-label="Adres e-mail do newslettera" />
                   <button type="submit" className="btn btn--primary">Zapisz się</button>
                 </form>
               </div>

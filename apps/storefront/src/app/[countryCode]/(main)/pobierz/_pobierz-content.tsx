@@ -6,21 +6,21 @@ import { useState } from "react"
 const FILTERS = ["Wszystkie", "PDF", "ZIP", "PL", "EN", "Certyfikaty", "Karty produktów", "Raporty badań"]
 
 const IconFile = () => (
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
     <polyline points="14 2 14 8 20 8" />
   </svg>
 )
 
 const IconPdfFile = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
     <polyline points="14 2 14 8 20 8" />
   </svg>
 )
 
 const IconZipFile = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
     <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
   </svg>
 )
@@ -64,7 +64,7 @@ export default function PobierzContent() {
                 className={activeNav === "certyfikaty" ? "is-active" : ""}
                 onClick={() => setActiveNav("certyfikaty")}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
                 Certyfikaty i atesty
@@ -82,67 +82,55 @@ export default function PobierzContent() {
                 className={activeNav === "badania" ? "is-active" : ""}
                 onClick={() => setActiveNav("badania")}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18" />
                 </svg>
                 Raporty z badań
               </a>
-              <a
-                href="#montaz"
-                className={activeNav === "montaz" ? "is-active" : ""}
-                onClick={() => setActiveNav("montaz")}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <span style={{ opacity: 0.4, pointerEvents: "none", display: "flex", alignItems: "center", gap: "8px", padding: "8px 0" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <circle cx="12" cy="12" r="3" />
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14" />
                 </svg>
-                Instrukcje montażu
-              </a>
+                Instrukcje montażu (wkrótce)
+              </span>
               <div className="dl-nav__divider" />
               <a
                 href="#inwestor"
                 className={activeNav === "inwestor" ? "is-active" : ""}
                 onClick={() => setActiveNav("inwestor")}
               >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <rect x="2" y="7" width="20" height="14" rx="2" />
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
                 </svg>
                 Pakiet inwestora
               </a>
-              <a
-                href="#dialux"
-                className={activeNav === "dialux" ? "is-active" : ""}
-                onClick={() => setActiveNav("dialux")}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <span style={{ opacity: 0.4, pointerEvents: "none", display: "flex", alignItems: "center", gap: "8px", padding: "8px 0" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <polygon points="12 2 2 7 12 12 22 7 12 2" />
                   <polyline points="2 17 12 22 22 17" />
                   <polyline points="2 12 12 17 22 12" />
                 </svg>
-                Projekty DIALux / IES
-              </a>
-              <a
-                href="#marketing"
-                className={activeNav === "marketing" ? "is-active" : ""}
-                onClick={() => setActiveNav("marketing")}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                Projekty DIALux / IES (wkrótce)
+              </span>
+              <span style={{ opacity: 0.4, pointerEvents: "none", display: "flex", alignItems: "center", gap: "8px", padding: "8px 0" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <path d="M3 9h18M9 21V9" />
                 </svg>
-                Materiały marketingowe
-              </a>
+                Materiały marketingowe (wkrótce)
+              </span>
             </aside>
 
             <div>
               {/* SEARCH */}
               <div className="dl-search">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <circle cx="11" cy="11" r="7" />
                   <path d="m21 21-4.3-4.3" />
                 </svg>
-                <input type="search" placeholder="Szukaj dokumentu, produktu, certyfikatu…" />
+                <input type="search" placeholder="Szukaj dokumentu, produktu, certyfikatu…" aria-label="Szukaj dokumentu" />
               </div>
 
               {/* FILTER CHIPS */}
@@ -177,7 +165,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/atest-pzh.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -193,7 +181,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/atest-ibprs.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -209,7 +197,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/deklaracja-ce-evln-pl.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -226,7 +214,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/deklaracje-ce-komplet.zip" download>Pobierz</a>
                     </div>
                   </div>
                 </div>
@@ -252,7 +240,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/raport-tuv-sud.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -271,7 +259,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/raporty-ugene.zip" download>Pobierz</a>
                     </div>
                   </div>
                 </div>
@@ -298,7 +286,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/karta-katalogowa-evln-pl.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -314,7 +302,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/karta-katalogowa-evln-dl.pdf" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -330,7 +318,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/katalog-produktow-2026.pdf" download>Pobierz</a>
                     </div>
                   </div>
                 </div>
@@ -358,7 +346,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--accent btn--sm">Pobierz</button>
+                      <a className="btn btn--accent btn--sm" href="/files/pakiet-inwestora-pelny.zip" download>Pobierz</a>
                     </div>
                   </div>
 
@@ -376,7 +364,7 @@ export default function PobierzContent() {
                       </div>
                     </div>
                     <div className="dl-file__btn">
-                      <button className="btn btn--primary btn--sm">Pobierz</button>
+                      <a className="btn btn--primary btn--sm" href="/files/prezentacja-evsun-inwestorzy.pdf" download>Pobierz</a>
                     </div>
                   </div>
                 </div>

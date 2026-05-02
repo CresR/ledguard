@@ -132,7 +132,7 @@ export default function TechnologiaPage() {
               <div className="step is-active">
                 <div className="step__num">1</div>
                 <div>
-                  <h4>Emisja światła w zakresie EVLN (450–600 nm)</h4>
+                  <h3>Emisja światła w zakresie EVLN (450–600 nm)</h3>
                   <p>
                     Diody LED w lampach EVSun emitują oprócz zwykłego białego oświetlenia także
                     specyficzny zakres widocznego spektrum (zielono-żółty, 450–600 nm). Nie jest to
@@ -143,7 +143,7 @@ export default function TechnologiaPage() {
               <div className="step">
                 <div className="step__num">2</div>
                 <div>
-                  <h4>Absorpcja przez fotouczulacze w komórkach</h4>
+                  <h3>Absorpcja przez fotouczulacze w komórkach</h3>
                   <p>
                     Wewnątrz komórek bakterii i grzybów (m.in. <em>S. aureus, E. coli</em>) obecne
                     są naturalne fotouczulacze — porfiryny. Absorbują one energię ze spektrum EVLN.
@@ -153,7 +153,7 @@ export default function TechnologiaPage() {
               <div className="step">
                 <div className="step__num">3</div>
                 <div>
-                  <h4>Reakcja fotochemiczna — powstanie ROS</h4>
+                  <h3>Reakcja fotochemiczna — powstanie ROS</h3>
                   <p>
                     Pochłoniięta energia wyzwala reakcję fotochemiczną, w wyniku której powstają
                     reaktywne formy tlenu (ROS). Prowadzą one do peroksydacji lipidów błony
@@ -164,7 +164,7 @@ export default function TechnologiaPage() {
               <div className="step">
                 <div className="step__num">4</div>
                 <div>
-                  <h4>Dezintegracja komórki — redukcja populacji</h4>
+                  <h3>Dezintegracja komórki — redukcja populacji</h3>
                   <p>
                     Uszkodzenie błony komórkowej prowadzi do śmierci bakterii lub grzyba. Proces
                     przebiega ciągle, przez cały czas pracy oświetlenia, nie wymaga wyłączania
@@ -430,7 +430,7 @@ export default function TechnologiaPage() {
               </div>
               <div className="app-card__body">
                 <div className="app-card__tag">Healthcare</div>
-                <h4>Szpitale, kliniki, gabinety</h4>
+                <h3>Szpitale, kliniki, gabinety</h3>
                 <p>
                   Sale chorych, gabinety zabiegowe, korytarze, izolatki. Wsparcie przy redukcji HAI
                   (zakażeń szpitalnych). Wymagana dokumentacja CE + PZH.
@@ -443,7 +443,7 @@ export default function TechnologiaPage() {
               </div>
               <div className="app-card__body">
                 <div className="app-card__tag">Gastronomia</div>
-                <h4>Restauracje, hotele, kuchnie</h4>
+                <h3>Restauracje, hotele, kuchnie</h3>
                 <p>
                   Kuchnie produkcyjne, bufety, linie wydawcze. IP65, kompatybilność z wymaganiami
                   HACCP, mniej skażeń powierzchniowych.
@@ -456,7 +456,7 @@ export default function TechnologiaPage() {
               </div>
               <div className="app-card__body">
                 <div className="app-card__tag">Biura i edukacja</div>
-                <h4>Open space, klasy, świetlice</h4>
+                <h3>Open space, klasy, świetlice</h3>
                 <p>
                   Redukcja sezonowych infekcji w przestrzeniach biurowych i szkolnych. Non-flicker
                   i Blue Care dla komfortu pracy.
@@ -479,22 +479,22 @@ export default function TechnologiaPage() {
           <div className="patents__grid">
             <div className="patent-card">
               <div className="patent-card__num">PL · ABCi · 2021/0034</div>
-              <h4>Metoda redukcji mikroorganizmów przy użyciu widocznego spektrum świetlnego</h4>
+              <h3>Metoda redukcji mikroorganizmów przy użyciu widocznego spektrum świetlnego</h3>
               <p>Patent obejmujący core technologii EVLN — użycie zakresu 450–600 nm do aktywacji fotouczulaczy.</p>
             </div>
             <div className="patent-card">
               <div className="patent-card__num">EU · EPO · 2022/119847</div>
-              <h4>Wielofunkcyjna oprawa oświetleniowa z modułem dezynfekującym</h4>
+              <h3>Wielofunkcyjna oprawa oświetleniowa z modułem dezynfekującym</h3>
               <p>Konstrukcja integrująca standardowe LED z modułem EVLN w jednej oprawie.</p>
             </div>
             <div className="patent-card">
               <div className="patent-card__num">MY · MyIPO · 2020/1234</div>
-              <h4>Blue Care — spektralne ograniczenie emisji niebieskiej dla komfortu wzroku</h4>
+              <h3>Blue Care — spektralne ograniczenie emisji niebieskiej dla komfortu wzroku</h3>
               <p>Technologia Blue Care redukująca zmęczenie oczu przy długotrwałej pracy.</p>
             </div>
             <div className="patent-card">
               <div className="patent-card__num">WIPO · PCT/2023/045</div>
-              <h4>System zarządzania ekspozycją EVLN w sieci opraw IoT</h4>
+              <h3>System zarządzania ekspozycją EVLN w sieci opraw IoT</h3>
               <p>
                 Zarządzanie strefami EVLN, monitoring i raportowanie redukcji — moduł SmartEVLN.
               </p>
