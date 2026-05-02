@@ -9,8 +9,8 @@ import { listRegions } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "Profile",
-  description: "View and edit your LedGuard profile.",
+  title: "Profil",
+  description: "Wyświetl i edytuj swój profil LedGuard.",
 }
 
 export default async function Profile() {
