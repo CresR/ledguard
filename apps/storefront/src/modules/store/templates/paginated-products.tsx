@@ -68,18 +68,16 @@ export default async function PaginatedProducts({
 
   return (
     <>
-      <ul
-        className="grid grid-cols-2 w-full small:grid-cols-3 medium:grid-cols-4 gap-x-6 gap-y-8"
-        data-testid="products-list"
-      >
-        {products.map((p) => {
-          return (
-            <li key={p.id}>
-              <ProductPreview product={p} region={region} />
-            </li>
-          )
-        })}
-      </ul>
+      <div className="listing-toolbar">
+        <div className="results-count">
+          <strong>{count}</strong> {count === 1 ? "produkt" : "produktów"}
+        </div>
+      </div>
+      <div className="products" data-testid="products-list">
+        {products.map((p) => (
+          <ProductPreview key={p.id} product={p} region={region} />
+        ))}
+      </div>
       {totalPages > 1 && (
         <Pagination
           data-testid="product-pagination"
