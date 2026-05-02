@@ -16,11 +16,13 @@ WORKDIR /app
 
 RUN addgroup -S medusa && adduser -S medusa -G medusa
 
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.medusa ./.medusa
-COPY --from=builder /app/package.json ./package.json
-COPY docker-entrypoint.sh ./docker-entrypoint.sh
+# Copy the standalone build output (has its own package.json)
+COPY --from=builder /app/.medusa/server .
 
+# Install production deps inside the .medusa/server directory
+RUN NODE_ENV=development npm install --legacy-peer-deps
+
+COPY docker-entrypoint.sh ./docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh && chown medusa:medusa docker-entrypoint.sh
 
 USER medusa
