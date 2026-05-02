@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Panel LED EVSun 600×600, 40W, EVLN + Blue Care | LEDGUARD</title>
+<meta name="description" content="Panel LED 600×600 z technologią EVLN — wspiera redukcję bakterii i grzybów. 40W, 4400lm, 4000K, IP40. Atest PZH, deklaracja CE, 2 lata gwarancji." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs { padding: 16px 0; font-size: 13px; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+  .crumbs a { color: var(--ink-3); } .crumbs a:hover { color: var(--navy); }
+  .crumbs span { color: var(--ink); font-weight: 500; }
+  .crumbs .sep { margin: 0 10px; color: var(--ink-4); }
+
+  .pdp { padding: 40px 0 80px; }
+  .pdp__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+
+  /* gallery */
+  .gallery__main {
+    aspect-ratio: 1;
+    border-radius: 18px;
+    background: linear-gradient(160deg, #F4F8FE 0%, #DDE7F5 100%);
+    position: relative; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .gallery__main .silhouette { position: absolute; inset: 0; }
+  .gallery__main .silhouette--square::before { width: 60%; }
+  .gallery__main-tag {
+    position: absolute; top: 20px; left: 20px;
+  }
+  .gallery__main-tools {
+    position: absolute; top: 20px; right: 20px;
+    display: flex; gap: 8px;
+  }
+  .gallery__tool {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(255,255,255,0.92); border: 1px solid var(--line);
+    display: grid; place-items: center; color: var(--ink-2);
+    cursor: pointer; transition: 120ms;
+  }
+  .gallery__tool:hover { color: var(--cyan-600); }
+  .gallery__thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 12px; }
+  .gallery__thumb {
+    aspect-ratio: 1; border-radius: 10px;
+    background: linear-gradient(160deg, #F4F8FE 0%, #DDE7F5 100%);
+    border: 1px solid var(--line); position: relative; overflow: hidden;
+    cursor: pointer; transition: 120ms;
+    font-family: var(--font-mono); font-size: 9px; color: var(--ink-4);
+    display: grid; place-items: center; letter-spacing: 0.06em;
+  }
+  .gallery__thumb.is-active { border-color: var(--cyan); box-shadow: var(--shadow-glow); }
+  .gallery__thumb:hover { border-color: var(--cyan); }
+
+  /* info */
+  .pdp-info__family {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 11px;
+    color: var(--cyan-600); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .pdp-info h1 { font-size: 32px; line-height: 1.15; letter-spacing: -0.02em; }
+  .pdp-info__sub { color: var(--ink-3); margin-top: 8px; font-size: 14px; font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .pdp-info__rating { display: flex; align-items: center; gap: 12px; margin-top: 14px; }
+  .pdp-info__rating .stars { color: var(--cyan-600); font-size: 14px; letter-spacing: 0.1em; }
+  .pdp-info__rating small { font-size: 13px; color: var(--ink-3); }
+
+  /* benefits */
+  .pdp-benefits { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-top: 24px; padding: 16px; background: var(--tint); border-radius: 12px; }
+  .pdp-benefit { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--navy); font-weight: 500; }
+  .pdp-benefit svg { color: var(--cyan-600); flex: none; }
+
+  /* variants */
+  .variants { margin-top: 28px; display: grid; gap: 18px; }
+  .variant-row label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+  .variant-opts { display: flex; flex-wrap: wrap; gap: 8px; }
+  .variant-opt {
+    padding: 10px 16px; border: 1.5px solid var(--line-strong); border-radius: 10px;
+    background: var(--white); color: var(--ink-2); cursor: pointer;
+    font-size: 13.5px; font-weight: 600; transition: 120ms;
+    font-family: inherit;
+  }
+  .variant-opt:hover { border-color: var(--navy); }
+  .variant-opt.is-active { border-color: var(--cyan); background: var(--cyan-50); color: var(--navy); }
+  .variant-opt small { display: block; font-size: 10.5px; font-weight: 500; color: var(--ink-3); margin-top: 2px; font-family: var(--font-mono); }
+
+  /* price box */
+  .price-box {
+    margin-top: 28px; padding: 20px; border: 1px solid var(--line);
+    border-radius: 14px; background: var(--white);
+  }
+  .price-box__row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .price-big { font-family: var(--font-display); font-weight: 700; font-size: 36px; color: var(--navy); letter-spacing: -0.03em; line-height: 1; }
+  .price-big small { font-size: 14px; color: var(--ink-3); font-weight: 500; margin-left: 8px; letter-spacing: 0.04em; font-family: var(--font-mono); text-transform: uppercase; }
+  .price-net { font-family: var(--font-mono); font-size: 13px; color: var(--ink-3); margin-top: 6px; }
+  .availability { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--success); font-weight: 600; }
+  .availability::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--success); box-shadow: 0 0 0 4px rgba(21,128,61,0.15); }
+  .qty-row { display: flex; gap: 12px; margin-top: 18px; align-items: stretch; }
+  .qty {
+    display: inline-flex; border: 1px solid var(--line-strong);
+    border-radius: 10px; overflow: hidden;
+  }
+  .qty button { width: 44px; background: transparent; border: 0; font-size: 18px; color: var(--navy); cursor: pointer; }
+  .qty button:hover { background: var(--tint); }
+  .qty input { width: 56px; border: 0; text-align: center; font-family: var(--font-mono); font-size: 15px; font-weight: 600; }
+  .qty input:focus { outline: none; }
+  .price-box__cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+
+  .pdp-extras { margin-top: 18px; display: grid; gap: 10px; }
+  .pdp-extra {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; background: var(--tint); border-radius: 10px;
+    font-size: 13px; color: var(--ink-2);
+  }
+  .pdp-extra svg { color: var(--cyan-600); flex: none; }
+  .pdp-extra strong { color: var(--navy); }
+
+  /* tabs */
+  .pdp-tabs { margin-top: 80px; }
+  .tabs-bar {
+    display: flex; gap: 4px; overflow-x: auto;
+    border-bottom: 1px solid var(--line); margin-bottom: 32px;
+  }
+  .tab-btn {
+    padding: 14px 20px; background: none; border: 0;
+    font-size: 14.5px; font-weight: 500; color: var(--ink-3);
+    border-bottom: 2px solid transparent; cursor: pointer;
+    white-space: nowrap; transition: 120ms;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--navy); }
+  .tab-btn.is-active { color: var(--navy); border-bottom-color: var(--cyan); font-weight: 600; }
+  .tab-pane { display: none; }
+  .tab-pane.is-active { display: block; animation: fade 200ms; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* spec table */
+  .spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .spec-table { width: 100%; border-collapse: collapse; }
+  .spec-table th, .spec-table td { padding: 14px 4px; border-bottom: 1px solid var(--line); text-align: left; font-size: 14px; vertical-align: top; }
+  .spec-table th { color: var(--ink-3); font-weight: 500; width: 50%; }
+  .spec-table td { color: var(--navy); font-weight: 600; font-family: var(--font-mono); font-size: 13.5px; letter-spacing: 0.02em; }
+
+  /* tech card */
+  .tech-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-700) 100%);
+    color: rgba(255,255,255,0.85);
+    padding: 32px; border-radius: 16px;
+    position: relative; overflow: hidden;
+  }
+  .tech-card h3 { color: var(--white); margin-bottom: 12px; }
+  .tech-card p { font-size: 14.5px; line-height: 1.65; color: rgba(255,255,255,0.75); }
+  .tech-card__pct {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 56px; color: var(--cyan-400); letter-spacing: -0.03em;
+    line-height: 1; margin: 16px 0 8px;
+  }
+  .tech-card__pct small { font-size: 14px; color: rgba(255,255,255,0.6); font-weight: 500; margin-left: 8px; }
+  .tech-card__bg {
+    position: absolute; right: -40px; top: -40px; width: 240px; height: 240px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(0,180,216,0.25), transparent 60%);
+  }
+
+  /* downloads */
+  .doc-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .doc-item {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px; border: 1px solid var(--line); border-radius: 12px;
+    transition: 120ms; background: var(--white);
+  }
+  .doc-item:hover { border-color: var(--cyan); box-shadow: var(--shadow-sm); }
+  .doc-item__ico {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--cyan-50); color: var(--navy);
+    display: grid; place-items: center; flex: none;
+  }
+  .doc-item__name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .doc-item__meta { font-size: 11.5px; color: var(--ink-3); font-family: var(--font-mono); margin-top: 2px; letter-spacing: 0.04em; }
+  .doc-item__btn { margin-left: auto; color: var(--cyan-600); }
+
+  /* similar */
+  .similar { padding: 80px 0; background: var(--tint); }
+  .similar__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .sim-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 12px;
+    overflow: hidden; transition: 200ms;
+  }
+  .sim-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .sim-card__media { aspect-ratio: 1; position: relative; background: linear-gradient(160deg, #F4F8FE 0%, #DDE7F5 100%); }
+  .sim-card__media .silhouette { position: absolute; inset: 0; }
+  .sim-card__body { padding: 14px; }
+  .sim-card__code { font-family: var(--font-mono); font-size: 10.5px; color: var(--cyan-600); letter-spacing: 0.06em; }
+  .sim-card__title { font-size: 13.5px; font-weight: 600; color: var(--navy); margin-top: 4px; line-height: 1.35; }
+  .sim-card__price { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--navy); margin-top: 8px; }
+  .sim-card__price small { font-size: 11px; color: var(--ink-3); font-weight: 500; margin-left: 4px; font-family: var(--font-mono); }
+
+  /* B2B consultation */
+  .b2b-cta {
+    margin: 80px auto 0;
+    background: linear-gradient(135deg, #0F1F4C 0%, #1B2D63 100%);
+    color: var(--white); border-radius: 20px; padding: 40px 56px;
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .b2b-cta::after {
+    content: ""; position: absolute; right: -100px; top: -100px;
+    width: 360px; height: 360px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.22), transparent 60%);
+  }
+  .b2b-cta h3 { color: var(--white); font-size: 28px; }
+  .b2b-cta p { color: rgba(255,255,255,0.75); margin-top: 8px; font-size: 15px; }
+  .b2b-cta__ctas { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; position: relative; z-index: 1; }
+
+  /* sticky cart bar */
+  .sticky-cta {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+    background: var(--white); border-top: 1px solid var(--line);
+    box-shadow: 0 -8px 24px rgba(15,31,76,0.08);
+    padding: 12px 0;
+    transform: translateY(100%); transition: transform 200ms ease;
+  }
+  .sticky-cta.is-visible { transform: none; }
+  .sticky-cta__inner { display: flex; align-items: center; gap: 20px; }
+  .sticky-cta__media {
+    width: 56px; height: 56px; border-radius: 10px;
+    background: linear-gradient(160deg, #F4F8FE 0%, #DDE7F5 100%);
+    border: 1px solid var(--line); position: relative; overflow: hidden; flex: none;
+  }
+  .sticky-cta__media .silhouette { position: absolute; inset: 0; }
+  .sticky-cta__media .silhouette--square::before { width: 50%; }
+  .sticky-cta__name { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .sticky-cta__sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .sticky-cta__price { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--navy); margin-left: auto; }
+  .sticky-cta__price small { font-size: 11px; color: var(--ink-3); font-weight: 500; margin-left: 4px; font-family: var(--font-mono); }
+  .sticky-cta__btns { display: flex; gap: 8px; }
+
+  @media (max-width: 980px) {
+    .pdp__grid { grid-template-columns: 1fr; gap: 32px; }
+    .spec-grid { grid-template-columns: 1fr; gap: 24px; }
+    .doc-list { grid-template-columns: 1fr; }
+    .similar__grid { grid-template-columns: 1fr 1fr; }
+    .b2b-cta { grid-template-columns: 1fr; padding: 32px 24px; }
+    .b2b-cta__ctas { justify-content: flex-start; }
+  }
+</style>
+</head>
+<body style="padding-bottom:80px">
+
+<header data-screen-label="02 Product detail" id="ledg-header" data-active="produkty"></header>
+
+<div class="crumbs">
+  <div class="shell">
+    <a href="index.html">Strona główna</a>
+    <span class="sep">/</span>
+    <a href="products.html">Produkty</a>
+    <span class="sep">/</span>
+    <a href="products.html?cat=panele">Panele LED</a>
+    <span class="sep">/</span>
+    <span>EVLN-PL-6060-40</span>
+  </div>
+</div>
+
+<section class="pdp">
+  <div class="shell">
+    <div class="pdp__grid">
+
+      <div class="gallery">
+        <div class="gallery__main">
+          <span class="badge prod__tag gallery__main-tag">Bestseller · EVLN + Blue Care</span>
+          <div class="gallery__main-tools">
+            <button class="gallery__tool" aria-label="Ulubione"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <button class="gallery__tool" aria-label="Udostępnij"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
+            <button class="gallery__tool" aria-label="Powiększ"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
+          </div>
+          <div class="silhouette silhouette--square"></div>
+        </div>
+        <div class="gallery__thumbs">
+          <div class="gallery__thumb is-active">FRONT</div>
+          <div class="gallery__thumb">SIDE</div>
+          <div class="gallery__thumb">DETAIL</div>
+          <div class="gallery__thumb">INSTALL</div>
+          <div class="gallery__thumb">CONTEXT</div>
+        </div>
+
+        <div class="pdp-extras">
+          <div class="pdp-extra"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span><strong>Wysyłka 24–48h</strong> · darmowa od 5000 PLN netto</span></div>
+          <div class="pdp-extra"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span><strong>2 lata gwarancji</strong> + wsparcie techniczne LEDGUARD</span></div>
+          <div class="pdp-extra"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span><strong>Pełna dokumentacja</strong> · CE, PZH, IBPRS, TÜV SÜD, UGENE</span></div>
+        </div>
+      </div>
+
+      <div class="pdp-info">
+        <span class="pdp-info__family">Rodzina EVLN-PL · Panele LED</span>
+        <h1>Panel LED EVSun 600×600, 40W, 4000K — EVLN + Blue Care</h1>
+        <div class="pdp-info__sub">Model: EVLN-PL-6060-40 · EAN: 5901234567890</div>
+        <div class="pdp-info__rating">
+          <span class="stars">★★★★★</span>
+          <small>4.8/5 · 27 opinii zweryfikowanych</small>
+          <span style="color:var(--ink-4)">·</span>
+          <small><a href="#" style="color:var(--cyan-600)">Zobacz opinie</a></small>
+        </div>
+
+        <div class="pdp-benefits">
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Bez UV</div>
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Wspiera redukcję bakterii</div>
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Non-flicker</div>
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Blue Care</div>
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>Energooszczędny</div>
+          <div class="pdp-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>2 lata gwarancji</div>
+        </div>
+
+        <div class="variants">
+          <div class="variant-row">
+            <label>Moc / strumień</label>
+            <div class="variant-opts">
+              <button class="variant-opt">30W <small>3300 lm</small></button>
+              <button class="variant-opt is-active">40W <small>4400 lm</small></button>
+              <button class="variant-opt">50W <small>5500 lm</small></button>
+            </div>
+          </div>
+          <div class="variant-row">
+            <label>Temperatura barwowa (CCT)</label>
+            <div class="variant-opts">
+              <button class="variant-opt">3000K <small>ciepła</small></button>
+              <button class="variant-opt is-active">4000K <small>neutralna</small></button>
+              <button class="variant-opt">5000K <small>zimna</small></button>
+              <button class="variant-opt">3-5K <small>przełączalna</small></button>
+            </div>
+          </div>
+          <div class="variant-row">
+            <label>Wymiar / kształt</label>
+            <div class="variant-opts">
+              <button class="variant-opt is-active">600×600</button>
+              <button class="variant-opt">300×1200</button>
+              <button class="variant-opt">600×1200</button>
+            </div>
+          </div>
+          <div class="variant-row">
+            <label>Sposób montażu</label>
+            <div class="variant-opts">
+              <button class="variant-opt is-active">Wpuszczany</button>
+              <button class="variant-opt">Natynkowy <small>+ ramka</small></button>
+              <button class="variant-opt">Zwieszany <small>+ linka</small></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="price-box">
+          <div class="price-box__row">
+            <div>
+              <div class="price-big">589,00<small>PLN brutto</small></div>
+              <div class="price-net">479,00 PLN netto · VAT 23%</div>
+            </div>
+            <div class="availability">Dostępny · 248 szt. w magazynie</div>
+          </div>
+          <div class="qty-row">
+            <div class="qty">
+              <button onclick="this.nextElementSibling.value=Math.max(1,this.nextElementSibling.value-1)">−</button>
+              <input type="number" value="1" min="1" />
+              <button onclick="this.previousElementSibling.value=parseInt(this.previousElementSibling.value)+1">+</button>
+            </div>
+            <button class="btn btn--primary btn--lg" style="flex:1" onclick="LEDG.addToCart('Panel EVLN-PL-6060-40')">Dodaj do koszyka</button>
+          </div>
+          <div class="price-box__cta">
+            <a href="b2b.html" class="btn btn--accent">Poproś o ofertę B2B</a>
+            <button class="btn btn--ghost" onclick="LEDG.toast('Dodano do listy ulubionych')">♡ Ulubione</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="pdp-tabs">
+      <div class="tabs-bar" role="tablist">
+        <button class="tab-btn is-active" data-tab="opis">Opis</button>
+        <button class="tab-btn" data-tab="spec">Specyfikacja</button>
+        <button class="tab-btn" data-tab="tech">Technologia EVLN</button>
+        <button class="tab-btn" data-tab="badania">Badania i certyfikaty</button>
+        <button class="tab-btn" data-tab="dokumenty">Dokumenty do pobrania</button>
+        <button class="tab-btn" data-tab="montaz">Montaż</button>
+        <button class="tab-btn" data-tab="faq">FAQ</button>
+      </div>
+
+      <div class="tab-pane is-active" data-pane="opis">
+        <div class="spec-grid">
+          <div>
+            <h3 style="font-size:22px;margin-bottom:12px">Panel LED z technologią EVLN do biur, szpitali i sal konferencyjnych</h3>
+            <p style="color:var(--ink-2);font-size:15px;line-height:1.7">Panel EVLN-PL-6060-40 to standardowy 600×600 wpust w sufity podwieszane (Armstrong i kompatybilne) z energooszczędnym oświetleniem 40W i wbudowaną technologią EVLN, która wspiera redukcję bakterii i grzybów w pomieszczeniu. Moduł Blue Care ogranicza udział niebieskiego spektrum, zmniejszając zmęczenie oczu podczas długiej pracy.</p>
+            <p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin-top:14px">Panel pracuje w sposób ciągły, bez dodatkowej obsługi i bez emisji UV, co pozwala stosować go w pomieszczeniach z ludźmi, dziećmi i zwierzętami. Konstrukcja aluminiowa z dyfuzorem PMMA zapewnia równomierne, nieflickerujące światło.</p>
+          </div>
+          <div class="tech-card">
+            <div class="tech-card__bg"></div>
+            <span class="badge" style="background:rgba(0,180,216,0.18);color:var(--cyan-400)">TÜV SÜD Witness Test</span>
+            <div class="tech-card__pct">99,71<small>%</small></div>
+            <h3 style="font-size:18px">redukcji <em>S. aureus</em> po 6 godzinach</h3>
+            <p>Wynik uzyskany w określonych warunkach laboratoryjnych. Skuteczność w praktyce zależy od warunków instalacji, czasu ekspozycji i otoczenia.</p>
+            <a href="research.html" class="btn btn--accent" style="margin-top:20px">Pełne wyniki badań →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="spec">
+        <div class="spec-grid">
+          <div>
+            <h4 style="font-size:14px;color:var(--ink-3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px">Parametry świetlne</h4>
+            <table class="spec-table">
+              <tr><th>Moc</th><td>40 W</td></tr>
+              <tr><th>Strumień świetlny</th><td>4400 lm</td></tr>
+              <tr><th>Skuteczność</th><td>110 lm/W</td></tr>
+              <tr><th>Temperatura barwowa</th><td>4000 K (neutral)</td></tr>
+              <tr><th>Wskaźnik CRI / Ra</th><td>≥ 80</td></tr>
+              <tr><th>Kąt rozsyłu</th><td>120°</td></tr>
+              <tr><th>UGR</th><td>≤ 19</td></tr>
+              <tr><th>Migotanie (flicker)</th><td>&lt; 1% (Non-flicker)</td></tr>
+              <tr><th>Blue Care</th><td>Tak — ograniczone niebieskie spektrum</td></tr>
+            </table>
+          </div>
+          <div>
+            <h4 style="font-size:14px;color:var(--ink-3);font-weight:600;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:12px">Parametry techniczne</h4>
+            <table class="spec-table">
+              <tr><th>Wymiary (mm)</th><td>595 × 595 × 9</td></tr>
+              <tr><th>Waga</th><td>2,7 kg</td></tr>
+              <tr><th>Materiał</th><td>Aluminium + PMMA dyfuzor</td></tr>
+              <tr><th>Napięcie zasilania</th><td>220–240 V AC, 50/60 Hz</td></tr>
+              <tr><th>Stopień ochrony IP</th><td>IP40</td></tr>
+              <tr><th>Klasa izolacji</th><td>II</td></tr>
+              <tr><th>Trwałość</th><td>L80B10 ≥ 50 000 h</td></tr>
+              <tr><th>Zakres temperatury pracy</th><td>−20°C do +40°C</td></tr>
+              <tr><th>Gwarancja</th><td>5 lat</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="tech">
+        <div style="max-width:780px">
+          <h3 style="margin-bottom:16px">Jak działa technologia EVLN w tym panelu</h3>
+          <p style="color:var(--ink-2);font-size:15px;line-height:1.7">Panel emituje światło widzialne w wybranym zakresie spektrum, które oddziałuje na fotouczulacze obecne w komórkach mikroorganizmów (porfiryny). W wyniku reakcji fotochemicznej powstają reaktywne formy tlenu, które uszkadzają strukturę bakterii i grzybów — bez UV, bez chemii, bez dodatkowej obsługi.</p>
+          <a href="technology.html" class="btn btn--primary" style="margin-top:20px">Pełne wyjaśnienie technologii EVLN →</a>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="badania">
+        <div style="max-width:780px">
+          <p style="color:var(--ink-2);font-size:15px;line-height:1.7;margin-bottom:24px">Wszystkie produkty EVSun przechodzą badania w niezależnych laboratoriach. Wyniki odnoszą się do określonych warunków testowych. Pełne raporty PDF dostępne w sekcji Dokumenty.</p>
+          <a href="research.html" class="btn btn--primary">Zobacz pełną sekcję badań →</a>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="dokumenty">
+        <div class="doc-list">
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="doc-item__name">Karta katalogowa</div><div class="doc-item__meta">PDF · 1.4 MB · PL/EN</div></div><span class="doc-item__btn">↓</span></a>
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="doc-item__name">Deklaracja zgodności CE</div><div class="doc-item__meta">PDF · 280 KB · PL</div></div><span class="doc-item__btn">↓</span></a>
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="doc-item__name">Atest higieniczny PZH</div><div class="doc-item__meta">PDF · 420 KB · PL</div></div><span class="doc-item__btn">↓</span></a>
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="doc-item__name">Raport TÜV SÜD</div><div class="doc-item__meta">PDF · 1.2 MB · EN</div></div><span class="doc-item__btn">↓</span></a>
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="doc-item__name">Raport UGENE Lab</div><div class="doc-item__meta">PDF · 980 KB · EN</div></div><span class="doc-item__btn">↓</span></a>
+          <a href="downloads.html" class="doc-item"><div class="doc-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="doc-item__name">Instrukcja montażu</div><div class="doc-item__meta">PDF · 2.1 MB · PL</div></div><span class="doc-item__btn">↓</span></a>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="montaz">
+        <div style="max-width:780px">
+          <h3 style="margin-bottom:16px">Montaż w 4 krokach</h3>
+          <ol style="padding-left:20px;color:var(--ink-2);font-size:15px;line-height:1.8">
+            <li><strong style="color:var(--navy)">Odłącz zasilanie</strong> — przed rozpoczęciem prac wyłącz bezpiecznik obwodu.</li>
+            <li><strong style="color:var(--navy)">Wpasuj w sufit modułowy</strong> — panel pasuje do standardowych sufitów Armstrong 600×600.</li>
+            <li><strong style="color:var(--navy)">Podłącz zasilanie</strong> — za pomocą zasilacza dołączonego do zestawu (220–240 V).</li>
+            <li><strong style="color:var(--navy)">Sprawdź pracę</strong> — włącz zasilanie i upewnij się, że światło jest stabilne i bez migotania.</li>
+          </ol>
+          <p style="color:var(--ink-3);font-size:13.5px;margin-top:20px;font-style:italic">Montaż powinna wykonywać osoba z odpowiednimi uprawnieniami SEP. Pełna instrukcja w PDF.</p>
+        </div>
+      </div>
+
+      <div class="tab-pane" data-pane="faq">
+        <details class="faq-item" open style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 22px;cursor:pointer;margin-bottom:12px"><summary style="list-style:none;font-weight:600;color:var(--navy);font-size:15px">Czy panel emituje UV?</summary><p style="margin-top:12px;color:var(--ink-2);font-size:14px;line-height:1.6">Nie. EVLN wykorzystuje wyłącznie światło widzialne. Bezpieczne w obecności ludzi.</p></details>
+        <details class="faq-item" style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 22px;cursor:pointer;margin-bottom:12px"><summary style="list-style:none;font-weight:600;color:var(--navy);font-size:15px">Czy pasuje do mojego sufitu?</summary><p style="margin-top:12px;color:var(--ink-2);font-size:14px;line-height:1.6">Standardowy moduł 600×600 — pasuje do sufitów Armstrong i kompatybilnych. Dostępne też ramki natynkowe i linki do zwieszania.</p></details>
+        <details class="faq-item" style="background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 22px;cursor:pointer;margin-bottom:12px"><summary style="list-style:none;font-weight:600;color:var(--navy);font-size:15px">Czy działa w pomieszczeniu z ludźmi?</summary><p style="margin-top:12px;color:var(--ink-2);font-size:14px;line-height:1.6">Tak — bez UV, bez chemii, ciągła praca. Może świecić 24/7.</p></details>
+      </div>
+    </div>
+
+    <!-- B2B CTA -->
+    <div class="b2b-cta">
+      <div style="position:relative;z-index:1">
+        <div class="eyebrow" style="color:var(--cyan-400)">Konsultacja B2B</div>
+        <h3>Potrzebujesz większej ilości lub doboru do projektu?</h3>
+        <p>Wyślij rzut lub listę pomieszczeń — przygotujemy wycenę z rabatem hurtowym i pełną dokumentacją w 24h.</p>
+      </div>
+      <div class="b2b-cta__ctas">
+        <a href="b2b.html" class="btn btn--accent btn--lg">Poproś o wycenę B2B</a>
+        <a href="contact.html" class="btn" style="color:#fff;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18)">Umów konsultację</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Similar -->
+<section class="similar">
+  <div class="shell">
+    <h2 style="margin-bottom:32px">Podobne produkty z rodziny EVLN-PL</h2>
+    <div class="similar__grid">
+      <a href="product.html" class="sim-card">
+        <div class="sim-card__media"><div class="silhouette silhouette--square"></div></div>
+        <div class="sim-card__body"><div class="sim-card__code">EVLN-PL-3012-36</div><div class="sim-card__title">Panel LED 300×1200, 36W</div><div class="sim-card__price">689<small>PLN</small></div></div>
+      </a>
+      <a href="product.html" class="sim-card">
+        <div class="sim-card__media"><div class="silhouette silhouette--square"></div></div>
+        <div class="sim-card__body"><div class="sim-card__code">EVLN-PL-6012-50</div><div class="sim-card__title">Panel LED 600×1200, 50W</div><div class="sim-card__price">869<small>PLN</small></div></div>
+      </a>
+      <a href="product.html" class="sim-card">
+        <div class="sim-card__media"><div class="silhouette silhouette--square"></div></div>
+        <div class="sim-card__body"><div class="sim-card__code">EVLN-PL-6060-30</div><div class="sim-card__title">Panel LED 600×600, 30W</div><div class="sim-card__price">499<small>PLN</small></div></div>
+      </a>
+      <a href="product.html" class="sim-card">
+        <div class="sim-card__media"><div class="silhouette silhouette--square"></div></div>
+        <div class="sim-card__body"><div class="sim-card__code">EVLN-PL-6060-50</div><div class="sim-card__title">Panel LED 600×600, 50W</div><div class="sim-card__price">699<small>PLN</small></div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Sticky cart -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="shell">
+    <div class="sticky-cta__inner">
+      <div class="sticky-cta__media"><div class="silhouette silhouette--square"></div></div>
+      <div>
+        <div class="sticky-cta__name">Panel LED EVSun 600×600, 40W, 4000K</div>
+        <div class="sticky-cta__sub">EVLN-PL-6060-40 · EVLN + Blue Care</div>
+      </div>
+      <div class="sticky-cta__price">589,00<small>PLN brutto</small></div>
+      <div class="sticky-cta__btns">
+        <a href="b2b.html" class="btn btn--ghost btn--sm">Wycena B2B</a>
+        <button class="btn btn--primary btn--sm" onclick="LEDG.addToCart('Panel EVLN-PL-6060-40')">Dodaj do koszyka</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer id="ledg-footer"></footer>
+
+<script src="assets/header.js"></script>
+<script>
+  // Tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelector('[data-pane="' + btn.dataset.tab + '"]').classList.add('is-active');
+    });
+  });
+
+  // Variant clicks
+  document.querySelectorAll('.variant-row').forEach(row => {
+    row.querySelectorAll('.variant-opt').forEach(opt => {
+      opt.addEventListener('click', () => {
+        row.querySelectorAll('.variant-opt').forEach(o => o.classList.remove('is-active'));
+        opt.classList.add('is-active');
+      });
+    });
+  });
+
+  // Sticky CTA visibility on scroll past price box
+  const sticky = document.getElementById('stickyCta');
+  const priceBox = document.querySelector('.price-box');
+  function checkSticky() {
+    if (!priceBox) return;
+    const rect = priceBox.getBoundingClientRect();
+    if (rect.bottom < 100) sticky.classList.add('is-visible');
+    else sticky.classList.remove('is-visible');
+  }
+  window.addEventListener('scroll', checkSticky, { passive: true });
+  checkSticky();
+</script>
+</body>
+</html>

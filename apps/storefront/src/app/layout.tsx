@@ -1,13 +1,23 @@
 import { getBaseURL } from "@lib/util/env"
 import { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google"
 import Script from "next/script"
 import "styles/globals.css"
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 
-const inter = Inter({ subsets: ["latin", "latin-ext"] })
+const inter = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter" })
+const interTight = Inter_Tight({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700"],
+  variable: "--font-inter-tight",
+})
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(getBaseURL()),
@@ -22,7 +32,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
-    <html lang="pl" data-mode="light" className={inter.className}>
+    <html
+      lang="pl"
+      data-mode="light"
+      className={`${inter.variable} ${interTight.variable} ${jetbrainsMono.variable} ${inter.className}`}
+    >
       <head>
         {/* Consent Mode v2 — plain script to avoid Next.js Script hydration mismatch */}
         <script

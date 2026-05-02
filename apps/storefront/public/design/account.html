@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Moje konto | LEDGUARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  /* login / register panels */
+  .auth-wrap{min-height:calc(100vh - 200px);display:grid;place-items:center;padding:48px 0;}
+  .auth-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:40px;width:100%;max-width:480px;box-shadow:var(--shadow-md);}
+  .auth-tabs{display:flex;border-bottom:1px solid var(--line);margin-bottom:28px;}
+  .auth-tab{flex:1;padding:12px;font-size:15px;font-weight:500;color:var(--ink-3);border-bottom:2px solid transparent;cursor:pointer;background:none;border-top:0;border-left:0;border-right:0;font-family:inherit;transition:120ms;}
+  .auth-tab:hover{color:var(--navy);}
+  .auth-tab.is-active{color:var(--navy);border-bottom-color:var(--cyan);font-weight:600;}
+  .auth-pane{display:none;}
+  .auth-pane.is-active{display:grid;gap:16px;animation:fadeIn 200ms;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .auth-divider{display:flex;align-items:center;gap:12px;font-size:12px;color:var(--ink-4);}
+  .auth-divider::before,.auth-divider::after{content:"";flex:1;height:1px;background:var(--line);}
+  .auth-social{display:grid;gap:8px;}
+  .btn-social{display:flex;align-items:center;justify-content:center;gap:10px;height:46px;border:1px solid var(--line-strong);border-radius:10px;font-size:14px;font-weight:500;color:var(--ink-2);background:var(--white);cursor:pointer;font-family:inherit;transition:120ms;}
+  .btn-social:hover{border-color:var(--navy);color:var(--navy);}
+  .forgot{font-size:12.5px;color:var(--cyan-600);text-align:right;cursor:pointer;}
+  .forgot:hover{color:var(--navy);}
+
+  /* dashboard */
+  .dash{display:none;padding:48px 0 80px;}
+  .dash.is-visible{display:block;}
+  .dash__header{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:16px;}
+  .dash__welcome{font-size:24px;font-weight:700;color:var(--navy);}
+  .dash__welcome span{color:var(--cyan-600);}
+  .dash-grid{display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start;}
+  .dash-nav{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:8px;}
+  .dash-nav a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--ink-2);transition:120ms;}
+  .dash-nav a:hover{background:var(--tint);color:var(--navy);}
+  .dash-nav a.is-active{background:var(--tint);color:var(--navy);font-weight:600;}
+  .dash-nav a svg{color:var(--cyan-600);flex:none;}
+  .dash-nav__div{height:1px;background:var(--line);margin:6px 0;}
+  .dash-nav__logout{color:var(--error) !important;}
+  .dash-nav__logout svg{color:var(--error) !important;}
+
+  /* dashboard panels */
+  .dash-pane{display:none;}
+  .dash-pane.is-active{display:block;animation:fadeIn 200ms;}
+  .dash-pane h2{font-size:20px;margin-bottom:20px;}
+
+  /* orders */
+  .orders-list{display:grid;gap:12px;}
+  .order-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;}
+  .order-card:hover{box-shadow:var(--shadow-sm);}
+  .order-card__id{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);letter-spacing:0.04em;margin-bottom:4px;}
+  .order-card__title{font-size:15px;font-weight:600;color:var(--navy);}
+  .order-card__meta{font-size:12.5px;color:var(--ink-3);margin-top:4px;}
+  .order-status{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;}
+  .order-status--delivered{background:var(--success-50);color:var(--success);}
+  .order-status--processing{background:var(--cyan-50);color:var(--cyan-600);}
+  .order-status--pending{background:var(--warning-50);color:var(--warning);}
+
+  /* favourites */
+  .favs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .fav-card{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:200ms;}
+  .fav-card:hover{box-shadow:var(--shadow-sm);}
+  .fav-card__ph{aspect-ratio:1;background:linear-gradient(160deg,#F4F8FE,#DDE7F5);}
+  .fav-card__body{padding:12px;}
+  .fav-card__code{font-family:var(--font-mono);font-size:10.5px;color:var(--cyan-600);letter-spacing:0.06em;}
+  .fav-card__title{font-size:13px;font-weight:600;color:var(--navy);margin-top:3px;line-height:1.3;}
+  .fav-card__price{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--navy);margin-top:6px;}
+
+  /* profile form */
+  .profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+  @media(max-width:900px){
+    .dash-grid{grid-template-columns:1fr;}
+    .favs-grid{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="12 Account" id="ledg-header" data-active=""></header>
+
+<!-- LOGIN/REGISTER (shown when logged out) -->
+<section class="auth-wrap" id="auth-section"><div class="shell">
+  <div style="text-align:center;margin-bottom:32px">
+    <div class="eyebrow" style="justify-content:center;display:inline-flex">Twoje konto</div>
+    <h1 style="font-size:32px">Zaloguj się lub utwórz konto</h1>
+    <p style="color:var(--ink-3);font-size:15px;margin-top:8px">Dostęp do historii zamówień, ulubionych, cenników B2B i dokumentacji.</p>
+  </div>
+  <div class="auth-card">
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab is-active" data-tab="login">Logowanie</button>
+      <button class="auth-tab" data-tab="register">Rejestracja</button>
+    </div>
+
+    <div class="auth-pane is-active" data-pane="login">
+      <div class="auth-social">
+        <button class="btn-social">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Kontynuuj z Google
+        </button>
+      </div>
+      <div class="auth-divider">lub</div>
+      <form onsubmit="event.preventDefault();showDashboard();" style="display:grid;gap:14px">
+        <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required placeholder="anna@firma.pl" /></div>
+        <div class="field">
+          <div style="display:flex;justify-content:space-between;align-items:center"><label>Hasło <span class="req">*</span></label><span class="forgot">Zapomniałeś hasła?</span></div>
+          <input type="password" required placeholder="••••••••" />
+        </div>
+        <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center">Zaloguj się</button>
+      </form>
+    </div>
+
+    <div class="auth-pane" data-pane="register">
+      <div class="auth-social">
+        <button class="btn-social">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+          Zarejestruj z Google
+        </button>
+      </div>
+      <div class="auth-divider">lub</div>
+      <form onsubmit="event.preventDefault();showDashboard();" style="display:grid;gap:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="field"><label>Imię <span class="req">*</span></label><input required placeholder="Anna" /></div>
+          <div class="field"><label>Nazwisko <span class="req">*</span></label><input required placeholder="Kowalska" /></div>
+        </div>
+        <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required placeholder="anna@firma.pl" /></div>
+        <div class="field"><label>Hasło <span class="req">*</span></label><input type="password" required placeholder="min. 8 znaków" /></div>
+        <div class="field"><label>Typ konta</label>
+          <select><option>Klient indywidualny (B2C)</option><option>Firma / B2B (cennik netto)</option></select>
+        </div>
+        <label class="checkbox"><input type="checkbox" required /><span>Akceptuję <a href="#" style="color:var(--cyan-600)">regulamin</a> i <a href="#" style="color:var(--cyan-600)">politykę prywatności</a></span></label>
+        <button type="submit" class="btn btn--primary btn--lg" style="width:100%;justify-content:center">Utwórz konto</button>
+      </form>
+    </div>
+  </div>
+</div></section>
+
+<!-- DASHBOARD (shown when logged in) -->
+<section class="dash" id="dash-section"><div class="shell">
+  <div class="dash__header">
+    <div>
+      <div class="dash__welcome">Cześć, <span>Anno!</span></div>
+      <div style="font-size:13px;color:var(--ink-3);margin-top:4px">anna.kowalska@firma.pl · Konto B2B · Partner Standard</div>
+    </div>
+    <button class="btn btn--ghost btn--sm" onclick="showAuth()">Wyloguj się</button>
+  </div>
+  <div class="dash-grid">
+    <nav class="dash-nav">
+      <a href="#" class="is-active" data-panel="orders"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Zamówienia</a>
+      <a href="#" data-panel="favourites"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Ulubione (2)</a>
+      <a href="#" data-panel="docs"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Moje dokumenty</a>
+      <a href="#" data-panel="profile"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Dane konta</a>
+      <div class="dash-nav__div"></div>
+      <a href="b2b.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Strefa B2B</a>
+      <a href="downloads.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Centrum dokumentów</a>
+      <div class="dash-nav__div"></div>
+      <a href="#" class="dash-nav__logout" onclick="showAuth();event.preventDefault()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Wyloguj się</a>
+    </nav>
+
+    <div>
+      <!-- ORDERS -->
+      <div class="dash-pane is-active" data-panel="orders">
+        <h2>Moje zamówienia</h2>
+        <div class="orders-list">
+          <div class="order-card">
+            <div><div class="order-card__id">LG/2026/00128</div><div class="order-card__title">Panel LED EVLN-PL-6060-40 × 12 szt.</div><div class="order-card__meta">Złożone 26.04.2026 · 7 068,00 PLN brutto</div></div>
+            <div style="text-align:right"><span class="order-status order-status--delivered">Dostarczono</span><div style="margin-top:8px"><a href="downloads.html" class="btn btn--ghost btn--sm">Faktura</a></div></div>
+          </div>
+          <div class="order-card">
+            <div><div class="order-card__id">LG/2026/00091</div><div class="order-card__title">Hermetyczna EVLN-VL-1200-40 × 8 szt. + EVLN-DL-180-15 × 4 szt.</div><div class="order-card__meta">Złożone 14.04.2026 · 4 548,00 PLN brutto</div></div>
+            <div style="text-align:right"><span class="order-status order-status--processing">W realizacji</span><div style="margin-top:8px"><a href="#" class="btn btn--ghost btn--sm" onclick="LEDG.toast('Numer śledzenia: DPD-PL-9238471')">Śledź</a></div></div>
+          </div>
+          <div class="order-card">
+            <div><div class="order-card__id">LG/2025/00874</div><div class="order-card__title">Panel EVLN-PL-3012-36 × 6 szt.</div><div class="order-card__meta">Złożone 19.11.2025 · 4 134,00 PLN brutto</div></div>
+            <div style="text-align:right"><span class="order-status order-status--delivered">Dostarczono</span><div style="margin-top:8px"><a href="downloads.html" class="btn btn--ghost btn--sm">Faktura</a></div></div>
+          </div>
+        </div>
+        <div style="margin-top:20px"><a href="products.html" class="btn btn--primary">Złóż nowe zamówienie</a></div>
+      </div>
+
+      <!-- FAVOURITES -->
+      <div class="dash-pane" data-panel="favourites">
+        <h2>Ulubione produkty</h2>
+        <div class="favs-grid">
+          <a href="product.html" class="fav-card">
+            <div class="fav-card__ph"></div>
+            <div class="fav-card__body"><div class="fav-card__code">EVLN-PL-6060-40</div><div class="fav-card__title">Panel LED 600×600, 40W, 4000K</div><div class="fav-card__price">589 PLN</div></div>
+          </a>
+          <a href="product.html" class="fav-card">
+            <div class="fav-card__ph"></div>
+            <div class="fav-card__body"><div class="fav-card__code">EVLN-VL-1200-40</div><div class="fav-card__title">Hermetyczna 1200mm, 40W, IP65</div><div class="fav-card__price">429 PLN</div></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- DOCS -->
+      <div class="dash-pane" data-panel="docs">
+        <h2>Moje dokumenty</h2>
+        <div style="display:grid;gap:10px">
+          <div style="display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--white)">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--cyan-50);color:var(--navy);display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><div style="font-size:14px;font-weight:600;color:var(--navy)">Faktura VAT LG/2026/00128</div><div style="font-size:12px;color:var(--ink-3);font-family:var(--font-mono);margin-top:2px">PDF · 26.04.2026</div></div>
+            <button class="btn btn--ghost btn--sm" style="margin-left:auto" onclick="LEDG.toast('Pobieranie: faktura.pdf')">Pobierz</button>
+          </div>
+          <div style="display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:12px;background:var(--white)">
+            <div style="width:40px;height:40px;border-radius:10px;background:var(--cyan-50);color:var(--navy);display:grid;place-items:center;flex:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><div style="font-size:14px;font-weight:600;color:var(--navy)">Faktura VAT LG/2026/00091</div><div style="font-size:12px;color:var(--ink-3);font-family:var(--font-mono);margin-top:2px">PDF · 14.04.2026</div></div>
+            <button class="btn btn--ghost btn--sm" style="margin-left:auto" onclick="LEDG.toast('Pobieranie: faktura.pdf')">Pobierz</button>
+          </div>
+        </div>
+        <div style="margin-top:16px"><a href="downloads.html" class="btn btn--text">Centrum dokumentów (certyfikaty, atesty) →</a></div>
+      </div>
+
+      <!-- PROFILE -->
+      <div class="dash-pane" data-panel="profile">
+        <h2>Dane konta</h2>
+        <form onsubmit="event.preventDefault();LEDG.toast('Dane zapisane.');" style="display:grid;gap:16px;max-width:600px">
+          <div class="profile-grid">
+            <div class="field"><label>Imię</label><input value="Anna" /></div>
+            <div class="field"><label>Nazwisko</label><input value="Kowalska" /></div>
+          </div>
+          <div class="field"><label>E-mail</label><input type="email" value="anna.kowalska@firma.pl" /></div>
+          <div class="field"><label>Telefon</label><input type="tel" value="+48 600 000 000" /></div>
+          <div class="field"><label>Firma</label><input value="Kowalska Sp. z o.o." /></div>
+          <div class="field"><label>NIP</label><input value="1234567890" /></div>
+          <div class="field"><label>Adres dostawy</label><input value="ul. Przykładowa 1, 00-001 Warszawa" /></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button type="submit" class="btn btn--primary">Zapisz zmiany</button>
+            <button type="button" class="btn btn--ghost" onclick="LEDG.toast('E-mail resetowania hasła wysłany.')">Zmień hasło</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  // Auth tabs
+  document.querySelectorAll('.auth-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.auth-tab').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.auth-pane').forEach(p => p.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelector('[data-pane="' + btn.dataset.tab + '"]').classList.add('is-active');
+    });
+  });
+
+  // Dashboard nav
+  document.querySelectorAll('.dash-nav a[data-panel]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.dash-nav a').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.dash-pane').forEach(p => p.classList.remove('is-active'));
+      a.classList.add('is-active');
+      document.querySelector('[data-panel="' + a.dataset.panel + '"]').classList.add('is-active');
+    });
+  });
+
+  function showDashboard() {
+    document.getElementById('auth-section').style.display = 'none';
+    document.getElementById('dash-section').classList.add('is-visible');
+  }
+  function showAuth() {
+    document.getElementById('auth-section').style.display = '';
+    document.getElementById('dash-section').classList.remove('is-visible');
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Realizacje EVSun — wdrożenia EVLN w szpitalach, hotelach, biurach | LEDGUARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs{padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  .cs-hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 100%);padding:56px 0 48px;border-bottom:1px solid var(--line);}
+  .cs-hero h1{font-size:clamp(30px,3vw,44px);}
+  .cs-hero p{color:var(--ink-2);font-size:16px;margin-top:10px;max-width:640px;}
+  .cs-stats{display:flex;gap:40px;flex-wrap:wrap;margin-top:28px;}
+  .cs-stat__val{font-family:var(--font-display);font-size:36px;font-weight:700;color:var(--navy);letter-spacing:-0.03em;line-height:1;}
+  .cs-stat__lbl{font-size:12px;color:var(--ink-3);margin-top:4px;font-family:var(--font-mono);letter-spacing:0.04em;}
+
+  /* filters */
+  .cs-filters{padding:28px 0;border-bottom:1px solid var(--line);background:var(--white);position:sticky;top:128px;z-index:20;}
+  .cs-filters__row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+  .cs-filters__label{font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:0.06em;text-transform:uppercase;margin-right:4px;}
+  .seg-pill{padding:7px 16px;border:1.5px solid var(--line-strong);border-radius:999px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;background:var(--white);transition:120ms;font-family:inherit;}
+  .seg-pill:hover{border-color:var(--navy);}
+  .seg-pill.is-active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+  /* case list */
+  .cs-main{padding:48px 0 80px;}
+
+  /* featured */
+  .cs-featured{
+    display:grid;grid-template-columns:1.3fr 1fr;
+    border-radius:20px;overflow:hidden;border:1px solid var(--line);
+    margin-bottom:32px;background:var(--white);transition:200ms;
+  }
+  .cs-featured:hover{box-shadow:var(--shadow-lg);}
+  .cs-featured__ph{min-height:360px;}
+  .cs-featured__body{padding:44px;}
+  .cs-featured__sector{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+  .cs-featured h2{font-size:28px;line-height:1.2;margin-bottom:14px;}
+  .cs-featured p{font-size:15px;color:var(--ink-2);line-height:1.65;}
+  .cs-featured__kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;}
+  .kpi{padding:16px;background:var(--tint);border-radius:10px;}
+  .kpi__val{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;line-height:1;}
+  .kpi__lbl{font-size:12px;color:var(--ink-3);margin-top:4px;line-height:1.3;}
+  .cs-featured__meta{font-size:13px;color:var(--ink-3);padding-top:16px;border-top:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap;}
+  .cs-featured__meta strong{color:var(--navy);}
+
+  /* grid */
+  .cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cs-card{background:var(--white);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:200ms;display:flex;flex-direction:column;}
+  .cs-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .cs-card__ph{aspect-ratio:4/3;}
+  .cs-card__body{padding:22px;flex:1;display:flex;flex-direction:column;}
+  .cs-card__sector{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+  .cs-card h3{font-size:18px;line-height:1.3;margin-bottom:10px;}
+  .cs-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;flex:1;}
+  .cs-card__kpis{display:flex;gap:12px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);}
+  .cs-card__kpi{font-size:12px;color:var(--ink-3);}
+  .cs-card__kpi strong{display:block;font-family:var(--font-display);font-size:18px;color:var(--navy);letter-spacing:-0.02em;}
+  .cs-card__meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px;font-size:12.5px;color:var(--ink-3);}
+  .cs-card__meta strong{color:var(--navy);}
+
+  @media(max-width:980px){
+    .cs-featured{grid-template-columns:1fr;}
+    .cs-featured__ph{min-height:240px;}
+    .cs-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:640px){
+    .cs-grid{grid-template-columns:1fr;}
+    .cs-stats{gap:24px;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="05 Case Studies" id="ledg-header" data-active="realizacje"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Realizacje</span>
+</div></div>
+
+<section class="cs-hero"><div class="shell">
+  <div class="eyebrow">Realizacje i wdrożenia</div>
+  <h1>Wdrożenia EVSun EVLN w Polsce i Europie</h1>
+  <p>Dokumentacja wybranych projektów — szpitale, hotele, gastronomia, biura, produkcja. Dane przed/po, produkty, wyniki IAQ i oszczędności energii.</p>
+  <div class="cs-stats">
+    <div><div class="cs-stat__val">140+</div><div class="cs-stat__lbl">zrealizowanych projektów</div></div>
+    <div><div class="cs-stat__val">28 000+</div><div class="cs-stat__lbl">zamontowanych opraw</div></div>
+    <div><div class="cs-stat__val">12</div><div class="cs-stat__lbl">krajów EU</div></div>
+    <div><div class="cs-stat__val">58%</div><div class="cs-stat__lbl">śr. oszczędność energii</div></div>
+  </div>
+</div></section>
+
+<div class="cs-filters">
+  <div class="shell">
+    <div class="cs-filters__row">
+      <span class="cs-filters__label">Sektor:</span>
+      <button class="seg-pill is-active">Wszystkie</button>
+      <button class="seg-pill">Healthcare</button>
+      <button class="seg-pill">Gastronomia</button>
+      <button class="seg-pill">Hotele</button>
+      <button class="seg-pill">Biura</button>
+      <button class="seg-pill">Produkcja</button>
+      <button class="seg-pill">Edukacja</button>
+    </div>
+  </div>
+</div>
+
+<section class="cs-main"><div class="shell">
+
+  <!-- FEATURED -->
+  <a href="case-studies.html" class="cs-featured">
+    <div class="cs-featured__ph ph ph--photo"><div class="ph__label">Zdjęcie: sala szpitalna / 1200×720</div></div>
+    <div class="cs-featured__body">
+      <div class="cs-featured__sector">Healthcare · Szpital powiatowy · Mazowieckie</div>
+      <h2>280 opraw EVLN-DL w oddziale wewnętrznym — monitoring IAQ 60 dni</h2>
+      <p>Kompleksowa wymiana oświetlenia w salach 1- i 2-osobowych oraz korytarzach oddziału wewnętrznego. Pomiary stężenia bakterii i grzybów w powietrzu (IAQ) przez 60 dni przed i po instalacji.</p>
+      <div class="cs-featured__kpis">
+        <div class="kpi"><div class="kpi__val">280</div><div class="kpi__lbl">opraw EVLN-DL-180-15</div></div>
+        <div class="kpi"><div class="kpi__val">61%</div><div class="kpi__lbl">oszczędność energii vs poprzednie oprawy</div></div>
+        <div class="kpi"><div class="kpi__val">Redukcja</div><div class="kpi__lbl">bakterii w powietrzu wg IAQ (szczegóły dla B2B)</div></div>
+        <div class="kpi"><div class="kpi__val">6 tyg.</div><div class="kpi__lbl">od zamówienia do odbioru</div></div>
+      </div>
+      <div class="cs-featured__meta">
+        <span><strong>Lokalizacja:</strong> Mazowieckie</span>
+        <span><strong>Rok:</strong> 2025</span>
+        <span><strong>Produkty:</strong> EVLN-DL, EVLN-PL</span>
+        <span><strong>Dokumentacja:</strong> PZH, CE, IAQ</span>
+      </div>
+    </div>
+  </a>
+
+  <!-- GRID -->
+  <div class="cs-grid">
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Kuchnia restauracyjna / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Gastronomia · Sieć restauracji</div>
+        <h3>Kuchnie produkcyjne — 12 lokali, EVLN-VL IP65</h3>
+        <p>Wymiana oświetlenia w kuchniach linii produkcji żywności. Hermetyczne oprawy IP65 spełniające wymagania HACCP. Weryfikacja przez inspektora sanepid.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>144</strong>opraw EVLN-VL</div>
+          <div class="cs-card__kpi"><strong>54%</strong>oszczędność energii</div>
+          <div class="cs-card__kpi"><strong>HACCP</strong>zatwierdzone</div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Warszawa × 12</strong> · 2025</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Open space biurowy / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Biura · Centrala korporacji</div>
+        <h3>Open space 4200 m² — panele EVLN-PL Blue Care</h3>
+        <p>Wymiana 420 opraw w całym biurze: open space, sale konferencyjne, recepcja. Certyfikat WELL Ready po audycie.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>420</strong>paneli EVLN-PL</div>
+          <div class="cs-card__kpi"><strong>63%</strong>oszczędność energii</div>
+          <div class="cs-card__kpi"><strong>WELL</strong>Ready</div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Kraków</strong> · 2024</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Hotel lobby / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Hotele · Hotel 4★</div>
+        <h3>Pokoje i SPA — 180 opraw EVLN-DL + natynkowe</h3>
+        <p>Pełna wymiana oświetlenia pokojów hotelowych, korytarzy i strefy SPA. Oświetlenie dekoracyjne z modułem EVLN.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>180</strong>opraw</div>
+          <div class="cs-card__kpi"><strong>47%</strong>oszczędność</div>
+          <div class="cs-card__kpi"><strong>Blue Care</strong>SPA</div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Sopot</strong> · 2024</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Hala produkcyjna / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Produkcja · Zakład farmaceutyczny</div>
+        <h3>Hala klasy czystości ISO 7 — EVLN-PL + HighBay</h3>
+        <p>Oświetlenie strefy produkcji leków w klasie czystości ISO 7. Wymagania GMP, pełna dokumentacja walidacyjna.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>340</strong>opraw</div>
+          <div class="cs-card__kpi"><strong>ISO 7</strong>cleanroom</div>
+          <div class="cs-card__kpi"><strong>GMP</strong>dokumentacja</div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Poznań</strong> · 2024</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Sala szkolna / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Edukacja · Szkoła podstawowa</div>
+        <h3>Klasy i świetlice — 96 opraw EVLN-PL, 18 sal</h3>
+        <p>Projekt ze środków EduGrant. Pomiary natężenia oświetlenia wg PN-EN 12464-1, protokół odbioru inspektora BHP.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>96</strong>opraw</div>
+          <div class="cs-card__kpi"><strong>500 lx</strong>klasy</div>
+          <div class="cs-card__kpi"><strong>UGR ≤19</strong></div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Łódź</strong> · 2025</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+
+    <a href="case-studies.html" class="cs-card">
+      <div class="cs-card__ph ph ph--photo"><div class="ph__label">Klinika stomatologiczna / 1200×900</div></div>
+      <div class="cs-card__body">
+        <div class="cs-card__sector">Healthcare · Sieć klinik stomatologicznych</div>
+        <h3>Gabinety stomatologiczne — 8 klinik, 210 opraw</h3>
+        <p>Specyficzne wymagania kolorystyki (CRI ≥ 90), oświetlenie uzupełniające EVLN-DL. Atest PZH wymagany przez sieć.</p>
+        <div class="cs-card__kpis">
+          <div class="cs-card__kpi"><strong>210</strong>opraw</div>
+          <div class="cs-card__kpi"><strong>CRI ≥ 90</strong></div>
+          <div class="cs-card__kpi"><strong>PZH</strong>atesty</div>
+        </div>
+        <div class="cs-card__meta"><span><strong>Polska × 8</strong> · 2025</span><span>Czytaj →</span></div>
+      </div>
+    </a>
+  </div>
+
+  <div style="display:flex;justify-content:center;margin-top:40px;gap:8px;align-items:center">
+    <button class="btn btn--ghost btn--sm" disabled style="opacity:0.4">←</button>
+    <button class="btn btn--primary btn--sm" style="width:38px;padding:0">1</button>
+    <button class="btn btn--ghost btn--sm" style="width:38px;padding:0">2</button>
+    <button class="btn btn--ghost btn--sm" style="width:38px;padding:0">3</button>
+    <button class="btn btn--ghost btn--sm">→</button>
+  </div>
+
+  <!-- B2B CTA -->
+  <div style="margin-top:72px;background:linear-gradient(135deg,#0F1F4C,#1B2D63);border-radius:20px;padding:48px 56px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden">
+    <div style="position:absolute;right:-100px;top:-100px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,216,0.2),transparent 65%);pointer-events:none"></div>
+    <div style="position:relative;z-index:1">
+      <div class="eyebrow" style="color:var(--cyan-400)">Twój projekt</div>
+      <h2 style="color:var(--white);font-size:32px">Chcesz wdrożyć EVSun w swoim obiekcie?</h2>
+      <p style="color:rgba(255,255,255,0.75);margin-top:10px;font-size:16px;max-width:560px">Przygotujemy dobór produktów, projekt oświetlenia DIALux i pełną dokumentację przetargową w 24h.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;position:relative;z-index:1;flex-shrink:0">
+      <a href="b2b.html" class="btn btn--accent btn--lg">Poproś o wycenę B2B</a>
+      <a href="contact.html" class="btn btn--lg" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.2);justify-content:center">Umów konsultację</a>
+    </div>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  document.querySelectorAll('.seg-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.seg-pill').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Strefa Partnera B2B — LEDGUARD | Wyceny, dokumentacja, warunki hurtowe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  /* hero */
+  .b2b-hero {
+    background:
+      radial-gradient(800px 500px at 90% 0%, rgba(0,180,216,0.14), transparent 55%),
+      linear-gradient(135deg, #0F1F4C 0%, #1B2D63 100%);
+    padding: 80px 0 100px; color: rgba(255,255,255,0.85); overflow: hidden; position: relative;
+  }
+  .b2b-hero::before {
+    content: ""; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
+  }
+  .b2b-hero .shell { position: relative; z-index: 1; }
+  .b2b-hero__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .b2b-hero h1 { font-size: clamp(36px, 4vw, 54px); color: var(--white); }
+  .b2b-hero h1 em { font-style: normal; color: var(--cyan-400); }
+  .b2b-hero p { font-size: 17px; color: rgba(255,255,255,0.75); margin-top: 18px; line-height: 1.65; }
+  .b2b-hero__perks { margin-top: 24px; display: grid; gap: 10px; }
+  .b2b-hero__perk { display: flex; align-items: center; gap: 10px; font-size: 14.5px; color: rgba(255,255,255,0.85); }
+  .b2b-hero__perk svg { color: var(--cyan-400); flex: none; }
+  .b2b-hero__ctas { margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* quick form card */
+  .qform {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(8px);
+    border-radius: 18px; padding: 32px;
+  }
+  .qform h3 { color: var(--white); font-size: 20px; margin-bottom: 6px; }
+  .qform .sub { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+  .qform .field label { color: rgba(255,255,255,0.85); }
+  .qform .field input, .qform .field select, .qform .field textarea {
+    background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.15); color: var(--white);
+  }
+  .qform .field input::placeholder, .qform .field textarea::placeholder { color: rgba(255,255,255,0.35); }
+  .qform .field input:focus, .qform .field select:focus, .qform .field textarea:focus {
+    border-color: var(--cyan-400); background: rgba(255,255,255,0.1);
+  }
+  .qform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  /* segments */
+  .segments { padding: 80px 0; background: var(--tint); }
+  .seg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .seg-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 16px;
+    padding: 28px; transition: 200ms;
+  }
+  .seg-card:hover { box-shadow: var(--shadow-md); border-color: var(--line-strong); transform: translateY(-2px); }
+  .seg-card__ico {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--tint); border: 1px solid var(--line);
+    display: grid; place-items: center; color: var(--navy); margin-bottom: 16px;
+  }
+  .seg-card h3 { font-size: 19px; margin-bottom: 10px; }
+  .seg-card p { font-size: 14px; color: var(--ink-3); line-height: 1.6; }
+  .seg-card__list { margin-top: 16px; padding: 0; list-style: none; display: grid; gap: 8px; font-size: 13.5px; color: var(--ink-2); }
+  .seg-card__list li { display: flex; align-items: center; gap: 8px; }
+  .seg-card__list svg { color: var(--success); flex: none; }
+
+  /* pricing tiers */
+  .pricing { padding: 80px 0; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .tier {
+    border-radius: 18px; padding: 32px; border: 1px solid var(--line); position: relative; overflow: hidden;
+    background: var(--white); transition: 200ms;
+  }
+  .tier:hover { box-shadow: var(--shadow-md); }
+  .tier--featured {
+    background: linear-gradient(145deg, #0F1F4C 0%, #1B2D63 100%);
+    border-color: transparent;
+    color: rgba(255,255,255,0.85);
+  }
+  .tier--featured::after {
+    content: ""; position: absolute; right: -80px; top: -80px;
+    width: 260px; height: 260px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,180,216,0.3), transparent 65%);
+  }
+  .tier__badge {
+    display: inline-block; margin-bottom: 14px;
+    padding: 4px 12px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .tier--standard .tier__badge { background: var(--tint); color: var(--navy); }
+  .tier--featured .tier__badge { background: var(--cyan); color: var(--navy); }
+  .tier--premium .tier__badge { background: rgba(15,31,76,0.08); color: var(--navy); }
+  .tier h3 { font-size: 22px; margin-bottom: 8px; }
+  .tier--featured h3 { color: var(--white); }
+  .tier__discount {
+    font-family: var(--font-display); font-size: 48px; font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1; margin: 16px 0 4px;
+  }
+  .tier--standard .tier__discount { color: var(--navy); }
+  .tier--featured .tier__discount { color: var(--cyan-400); }
+  .tier--premium .tier__discount { color: var(--navy); }
+  .tier__from { font-size: 13px; color: var(--ink-3); font-family: var(--font-mono); }
+  .tier--featured .tier__from { color: rgba(255,255,255,0.6); }
+  .tier__list { margin-top: 20px; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 14px; }
+  .tier__list li { display: flex; gap: 10px; align-items: flex-start; }
+  .tier--standard .tier__list svg { color: var(--success); flex: none; margin-top: 2px; }
+  .tier--featured .tier__list svg { color: var(--cyan-400); flex: none; margin-top: 2px; }
+  .tier--premium .tier__list svg { color: var(--success); flex: none; margin-top: 2px; }
+  .tier--featured .tier__list { color: rgba(255,255,255,0.85); }
+  .tier__cta { margin-top: 28px; }
+  .tier__cta .btn { width: 100%; justify-content: center; }
+
+  /* process timeline */
+  .process { padding: 80px 0; background: var(--tint); }
+  .timeline { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative; }
+  .timeline::before {
+    content: ""; position: absolute;
+    top: 28px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--navy-300) 100%);
+  }
+  .tl-step { text-align: center; padding: 0 12px; }
+  .tl-step__dot {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--cyan);
+    display: grid; place-items: center; color: var(--navy);
+    margin: 0 auto 16px; position: relative; z-index: 1;
+    font-family: var(--font-display); font-weight: 700; font-size: 18px;
+    box-shadow: 0 0 0 8px var(--tint);
+  }
+  .tl-step h4 { font-size: 14px; margin-bottom: 6px; }
+  .tl-step p { font-size: 12.5px; color: var(--ink-3); line-height: 1.5; }
+
+  /* docs package */
+  .docs-pkg { padding: 80px 0; }
+  .docs-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: center; }
+  .doc-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .doc-chips .chip { font-family: var(--font-mono); font-size: 12px; }
+
+  @media (max-width: 980px) {
+    .b2b-hero__grid { grid-template-columns: 1fr; gap: 40px; }
+    .seg-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: 1fr; }
+    .timeline::before { display: none; }
+    .docs-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="06 B2B Zone" id="ledg-header" data-active=""></header>
+
+<!-- HERO -->
+<section class="b2b-hero">
+  <div class="shell">
+    <div class="b2b-hero__grid">
+      <div>
+        <div class="eyebrow" style="color:var(--cyan-400)">Strefa Partnera B2B</div>
+        <h1>Wycena projektu<br>w <em>24 godziny</em></h1>
+        <p>Dostarczamy kompletne rozwiązania oświetleniowe dla szpitali, hoteli, gastronomii, biur i obiektów przemysłowych — z pełną dokumentacją techniczną, warunkami hurtowymi i 2-letnią gwarancją.</p>
+        <div class="b2b-hero__perks">
+          <div class="b2b-hero__perk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bezpłatne dobór produktów i projekt oświetlenia</div>
+          <div class="b2b-hero__perk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Komplet dokumentów do przetargów publicznych</div>
+          <div class="b2b-hero__perk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Rabaty hurtowe od 15% przy zamówieniach ≥ 20 szt.</div>
+          <div class="b2b-hero__perk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Obsługa projektów UE i zamówień publicznych</div>
+          <div class="b2b-hero__perk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dystrybucja w Polsce, EU, Ukraina, MENA</div>
+        </div>
+        <div class="b2b-hero__ctas">
+          <a href="#b2b-form" class="btn btn--accent btn--lg">Poproś o wycenę B2B</a>
+          <a href="downloads.html" class="btn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:#fff">Pobierz pakiet inwestora</a>
+        </div>
+      </div>
+      <form class="qform" id="b2b-form" onsubmit="event.preventDefault();LEDG.toast('Dziękujemy — odezwiemy się w ciągu 24h.');this.reset();">
+        <h3>Szybkie zapytanie B2B</h3>
+        <p class="sub">Wypełnij i oddzwonimy w ciągu 4 godzin roboczych.</p>
+        <div style="display:grid;gap:12px">
+          <div class="qform-row">
+            <div class="field"><label>Imię i nazwisko <span class="req">*</span></label><input required placeholder="Anna Kowalska" /></div>
+            <div class="field"><label>Firma</label><input placeholder="Sp. z o.o." /></div>
+          </div>
+          <div class="qform-row">
+            <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required placeholder="anna@firma.pl" /></div>
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+48 ..." /></div>
+          </div>
+          <div class="qform-row">
+            <div class="field"><label>Typ obiektu</label>
+              <select><option>Szpital / klinika</option><option>Hotel / SPA</option><option>Gastronomia</option><option>Biuro</option><option>Produkcja / magazyn</option><option>Szkoła / uczelnia</option><option>Handel detaliczny</option><option>Inne</option></select>
+            </div>
+            <div class="field"><label>Pow. (m²)</label><input type="number" placeholder="1200" /></div>
+          </div>
+          <div class="field"><label>Uwagi / specyficzne wymagania</label><textarea placeholder="np. klasa czystości ISO 7, HACCP, certyfikaty BREEAM…" style="min-height:80px"></textarea></div>
+          <button type="submit" class="btn btn--accent btn--lg" style="width:100%;justify-content:center">Wyślij zapytanie →</button>
+          <p style="font-size:11.5px;color:rgba(255,255,255,0.5);text-align:center">Pełen formularz z załącznikami dostępny poniżej. Odpowiedź w 24h robocze.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS -->
+<section class="segments">
+  <div class="shell">
+    <div class="section__head section__head--center">
+      <div class="eyebrow">Segmenty B2B</div>
+      <h2>Dla kogo mamy rozwiązania</h2>
+    </div>
+    <div class="seg-grid">
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+        <h3>Szpitale i kliniki</h3>
+        <p>Sale chorych, gabinety, bloki operacyjne, korytarze. Wsparcie przy redukcji HAI, dokumentacja do przetargów NFZ i PZP.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atest PZH wymagany — mamy</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Raport TÜV SÜD i UGENE</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dokumentacja do PZP (SIWZ)</li>
+        </ul>
+      </div>
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/><rect x="12" y="2" width="8" height="6" rx="1"/></svg></div>
+        <h3>Hotele i obiekty SPA</h3>
+        <p>Restauracje, pokoje hotelowe, strefy wellness, SPA. Dyskretna higiena bez kompromisów estetycznych.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Blue Care — komfort gości</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Desig-friendly — wiele kształtów</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Certyfikat WELL Building</li>
+        </ul>
+      </div>
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Gastronomia i food service</h3>
+        <p>Kuchnie produkcyjne, linie wydawcze, chłodnie. Hermetyczne EVLN-VL IP65, zgodność z HACCP.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>IP65 — wodoszczelne oprawy</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atest IBPRS dla żywności</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Obsługa sieci i franczyz</li>
+        </ul>
+      </div>
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>Biura i coworking</h3>
+        <p>Open space, sale konferencyjne, recepcje. Certyfikat WELL, BREEAM, LEED. Non-flicker i Blue Care — mniej zwolnień.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>WELL Building Standard</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>UGR ≤ 19, Ra ≥ 80</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Integracja KNX / DALI</li>
+        </ul>
+      </div>
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3>Szkoły i uczelnie</h3>
+        <p>Klasy, świetlice, sale gimnastyczne, laboratoria. Redukcja sezonowych infekcji i komfort wzroku dla uczniów.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bezpieczne dla dzieci — bez UV</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Warunki EduGrant i MEN</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wycena w 24h</li>
+        </ul>
+      </div>
+      <div class="seg-card">
+        <div class="seg-card__ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 7h.01M17 7h.01M7 12h.01M12 12h.01M17 12h.01M7 17h.01M12 17h.01M17 17h.01"/></svg></div>
+        <h3>Produkcja i magazyny</h3>
+        <p>Hale produkcyjne, chłodnie, magazyny high-bay. Przemysłowe EVLN-HBN 100–200W, IP65, trwałość 50 000h.</p>
+        <ul class="seg-card__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>HighBay 100–200W, IP65</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Klasa EX na zamówienie</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Leasing i wynajem długoterminowy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TIERS -->
+<section class="pricing">
+  <div class="shell">
+    <div class="section__head section__head--center">
+      <div class="eyebrow">Cennik B2B</div>
+      <h2>Warunki hurtowe i programy partnerskie</h2>
+    </div>
+    <div class="pricing-grid">
+      <div class="tier tier--standard">
+        <div class="tier__badge">Partner Standard</div>
+        <h3>Zamawiający / dystrybutor</h3>
+        <div class="tier__discount">−15%</div>
+        <div class="tier__from">od 20 szt. jednej referencji</div>
+        <ul class="tier__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Cennik netto</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dokumentacja techniczna PDF</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Faktura VAT</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wsparcie e-mail</li>
+        </ul>
+        <div class="tier__cta"><a href="#b2b-form" class="btn btn--primary">Złóż zapytanie</a></div>
+      </div>
+      <div class="tier tier--featured">
+        <div class="tier__badge">Partner Preferowany ★</div>
+        <h3>Integrator / wykonawca</h3>
+        <div class="tier__discount">−25%</div>
+        <div class="tier__from">od 100 szt. / 30 000 PLN netto</div>
+        <ul class="tier__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wszystko z Standard</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bezpłatne projekty oświetlenia DIALux</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Komplet dokumentów przetargowych</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Opiekun projektu + tel. priorytet</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Płatność 30/60 dni</li>
+        </ul>
+        <div class="tier__cta"><a href="#b2b-form" class="btn btn--accent">Zostań partnerem</a></div>
+      </div>
+      <div class="tier tier--premium">
+        <div class="tier__badge">Dystrybutor regionalny</div>
+        <h3>Wyłączna dystrybucja</h3>
+        <div class="tier__discount">−40%</div>
+        <div class="tier__from">min. 200 000 PLN / rok</div>
+        <ul class="tier__list">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wszystko z Preferowanego</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wyłączność na region / branżę</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Branding EVSun na materiałach</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Szkolenia produktowe i demo</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Konsygnacja do 60 dni</li>
+        </ul>
+        <div class="tier__cta"><a href="contact.html" class="btn btn--primary">Skontaktuj się</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="shell">
+    <div class="section__head section__head--center">
+      <div class="eyebrow">Jak to działa</div>
+      <h2>Realizacja projektu w 5 krokach</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-step"><div class="tl-step__dot">1</div><h4>Zapytanie</h4><p>Wypełnij formularz lub zadzwoń — opisz obiekt i potrzeby</p></div>
+      <div class="tl-step"><div class="tl-step__dot">2</div><h4>Dobór</h4><p>Nasz specjalista proponuje produkty i ilości w 24h</p></div>
+      <div class="tl-step"><div class="tl-step__dot">3</div><h4>Wycena</h4><p>Oferta z cenami netto, warunkami i dokumentacją</p></div>
+      <div class="tl-step"><div class="tl-step__dot">4</div><h4>Zamówienie</h4><p>Akceptacja, faktura, wysyłka 24–48h z magazynu PL</p></div>
+      <div class="tl-step"><div class="tl-step__dot">5</div><h4>Wsparcie</h4><p>Montaż, odbiór, serwis, dokumentacja powykonawcza</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCS PACKAGE -->
+<section class="docs-pkg">
+  <div class="shell">
+    <div class="docs-grid">
+      <div>
+        <div class="eyebrow">Dokumentacja przetargowa</div>
+        <h2>Pełna dokumentacja do przetargów publicznych</h2>
+        <p style="color:var(--ink-2);font-size:15px;margin-top:14px;line-height:1.65">Każde zamówienie B2B obejmuje komplet dokumentów wymaganych w postępowaniach o udzielenie zamówienia publicznego (PZP) w Polsce i UE.</p>
+        <div class="doc-chips">
+          <span class="chip">Deklaracja CE</span>
+          <span class="chip">Atest PZH</span>
+          <span class="chip">Atest IBPRS</span>
+          <span class="chip">Raport TÜV SÜD</span>
+          <span class="chip">Raport UGENE</span>
+          <span class="chip">Karta katalogowa</span>
+          <span class="chip">Deklaracja właściwości użytkowych</span>
+          <span class="chip">Projekt DIALux</span>
+          <span class="chip">Karty MSDS</span>
+          <span class="chip">Gwarancja 2-letnia</span>
+        </div>
+        <a href="downloads.html" class="btn btn--primary" style="margin-top:24px">Pobierz pakiet inwestora (PDF)</a>
+      </div>
+      <div style="background:var(--tint);border-radius:16px;padding:36px">
+        <div class="eyebrow">Referencje</div>
+        <h3 style="font-size:22px;margin-bottom:20px">Realizacje referencyjne</h3>
+        <div style="display:grid;gap:16px">
+          <div style="padding:16px;background:var(--white);border-radius:10px;border:1px solid var(--line)">
+            <div style="font-size:13px;font-weight:600;color:var(--navy)">Szpital Powiatowy — Mazowieckie</div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:4px">280 lamp EVLN-DL · sale chorych i korytarze · 2025</div>
+          </div>
+          <div style="padding:16px;background:var(--white);border-radius:10px;border:1px solid var(--line)">
+            <div style="font-size:13px;font-weight:600;color:var(--navy)">Sieć restauracji — Warszawa × 12 lokali</div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:4px">EVLN-VL hermetyczne IP65 · kuchnie HACCP · 2025</div>
+          </div>
+          <div style="padding:16px;background:var(--white);border-radius:10px;border:1px solid var(--line)">
+            <div style="font-size:13px;font-weight:600;color:var(--navy)">Centrum biurowe — Kraków 4200 m²</div>
+            <div style="font-size:12px;color:var(--ink-3);margin-top:4px">Panele EVLN-PL Blue Care · WELL Ready · 2024</div>
+          </div>
+          <a href="case-studies.html" class="btn btn--text">Wszystkie realizacje →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--navy);padding:80px 0;text-align:center">
+  <div class="shell">
+    <div class="eyebrow" style="color:var(--cyan-400);display:inline-flex;justify-content:center">Porozmawiajmy</div>
+    <h2 style="color:var(--white);max-width:700px;margin:0 auto 14px">Gotowy na wycenę? Oddzwonimy w 4h robocze.</h2>
+    <p style="color:rgba(255,255,255,0.7);font-size:17px;max-width:540px;margin:0 auto 28px">Wyślij zapytanie lub zadzwoń bezpośrednio do zespołu B2B.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="#b2b-form" class="btn btn--accent btn--lg">Formularz B2B</a>
+      <a href="tel:+48221108800" class="btn btn--lg" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)">+48 22 110 88 00</a>
+      <a href="contact.html" class="btn btn--lg btn--ghost" style="color:#fff;border-color:rgba(255,255,255,0.25)">Kontakt ogólny</a>
+    </div>
+  </div>
+</section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+</body>
+</html>

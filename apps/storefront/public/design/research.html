@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Badania i certyfikaty EVSun — TÜV SÜD, PZH, UGENE, IBPRS | LEDGUARD</title>
+<meta name="description" content="Pełna dokumentacja naukowa i certyfikaty EVSun: TÜV SÜD Witness Test, PZH, UGENE, IBPRS, CE. Skuteczność potwierdzona w niezależnych laboratoriach." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs { padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line); }
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  /* hero */
+  .research-hero { background:linear-gradient(180deg,var(--tint) 0%,var(--white) 100%); padding:64px 0 56px; }
+  .research-hero__grid { display:grid; grid-template-columns:1fr auto; gap:40px; align-items:end; }
+  .research-hero h1 { font-size:clamp(32px,3.5vw,48px); }
+  .research-hero p { color:var(--ink-2);font-size:17px;margin-top:12px;max-width:680px;line-height:1.65; }
+  .stat-row { display:flex;gap:40px;flex-wrap:wrap;margin-top:28px; }
+  .stat-item { text-align:center; }
+  .stat-item__val { font-family:var(--font-display);font-size:40px;font-weight:700;color:var(--navy);letter-spacing:-0.03em;line-height:1; }
+  .stat-item__lbl { font-size:12px;color:var(--ink-3);margin-top:4px;font-family:var(--font-mono);letter-spacing:0.04em; }
+
+  /* disclaimer box */
+  .disclaimer-banner {
+    background:rgba(217,119,6,0.08);border:1px solid rgba(217,119,6,0.25);
+    border-radius:12px;padding:18px 22px;
+    display:flex;align-items:flex-start;gap:14px;
+    font-size:13.5px;color:var(--ink-2);line-height:1.55;
+  }
+  .disclaimer-banner svg { color:#B45309;flex:none;margin-top:2px; }
+
+  /* lab cards */
+  .labs { padding:80px 0; }
+  .labs-grid { display:grid;grid-template-columns:repeat(2,1fr);gap:24px; }
+  .lab-card {
+    border-radius:18px;border:1px solid var(--line);overflow:hidden;
+    background:var(--white);
+  }
+  .lab-card__header {
+    padding:24px 28px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--line);gap:16px;flex-wrap:wrap;
+  }
+  .lab-card__name {
+    font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--navy);
+  }
+  .lab-card__country { font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:0.06em;text-transform:uppercase; }
+  .lab-card__body { padding:24px 28px; }
+  .result-row {
+    display:grid;grid-template-columns:1fr auto 1fr auto;
+    align-items:center;gap:12px;
+    padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;
+  }
+  .result-row:last-child { border-bottom:0; }
+  .result-row__org { color:var(--ink-2);font-style:italic; }
+  .result-row__time { font-family:var(--font-mono);font-size:12px;color:var(--ink-3);white-space:nowrap; }
+  .result-row__pct {
+    font-family:var(--font-display);font-weight:700;font-size:22px;color:var(--cyan-600);
+    letter-spacing:-0.02em;text-align:right;
+  }
+  .result-row__bar { grid-column:1/-1; height:4px; background:var(--tint); border-radius:2px; }
+  .result-row__bar span { display:block;height:4px;border-radius:2px;background:var(--cyan); }
+  .lab-card__footer {
+    padding:18px 28px;background:var(--tint);
+    display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-size:13px;color:var(--ink-3);
+  }
+  .lab-card__footer a { color:var(--cyan-600);font-weight:600; }
+
+  /* certs grid */
+  .certs { padding:80px 0;background:var(--tint); }
+  .certs-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:20px; }
+  .cert-card {
+    background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:28px;transition:200ms;
+  }
+  .cert-card:hover { box-shadow:var(--shadow-md);border-color:var(--line-strong); }
+  .cert-card__logo {
+    width:64px;height:64px;border-radius:12px;
+    background:var(--tint);border:1px solid var(--line);
+    display:grid;place-items:center;
+    font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--navy);
+    letter-spacing:0.04em;margin-bottom:16px;
+  }
+  .cert-card h4 { font-size:16px;margin-bottom:8px; }
+  .cert-card p { font-size:13px;color:var(--ink-3);line-height:1.55; }
+  .cert-card__badges { display:flex;flex-wrap:wrap;gap:6px;margin-top:12px; }
+  .cert-card__badge {
+    font-family:var(--font-mono);font-size:10px;padding:3px 8px;border-radius:4px;
+    background:var(--tint);color:var(--navy);letter-spacing:0.04em;
+  }
+  .cert-card__dl { margin-top:16px; }
+
+  /* HOW WE TEST */
+  .how { padding:80px 0; }
+  .how-grid { display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center; }
+  .how-steps { display:grid;gap:0; }
+  .how-step {
+    display:grid;grid-template-columns:40px 1fr;gap:16px;
+    padding:20px 0;border-bottom:1px solid var(--line);
+  }
+  .how-step:last-child{border-bottom:0;}
+  .how-step__num {
+    width:40px;height:40px;border-radius:10px;
+    background:var(--navy);color:var(--white);
+    display:grid;place-items:center;
+    font-family:var(--font-display);font-weight:700;font-size:15px;
+    flex:none;
+  }
+  .how-step h4 { font-size:15px;margin-bottom:5px; }
+  .how-step p { font-size:13.5px;color:var(--ink-3);line-height:1.55; }
+  .how-vis {
+    background:linear-gradient(135deg,#0F1F4C 0%,#1B2D63 100%);
+    border-radius:18px;padding:36px;position:relative;overflow:hidden;
+  }
+  .how-vis::after {
+    content:"";position:absolute;right:-80px;top:-80px;
+    width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(0,180,216,0.25),transparent 65%);
+  }
+  .how-vis h3{color:var(--white);margin-bottom:16px;position:relative;z-index:1;}
+  .how-vis p{color:rgba(255,255,255,0.75);font-size:14px;line-height:1.65;position:relative;z-index:1;}
+  .how-vis__stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;position:relative;z-index:1;}
+  .how-stat{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:14px;}
+  .how-stat__val{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--cyan-400);letter-spacing:-0.02em;line-height:1;}
+  .how-stat__lbl{font-size:11.5px;color:rgba(255,255,255,0.6);margin-top:4px;line-height:1.35;}
+
+  /* downloads */
+  .dl-section{padding:80px 0;background:var(--tint);}
+  .dl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .dl-item{
+    background:var(--white);border:1px solid var(--line);border-radius:12px;
+    padding:20px;display:flex;align-items:center;gap:14px;transition:150ms;
+  }
+  .dl-item:hover{border-color:var(--cyan);box-shadow:var(--shadow-sm);}
+  .dl-item__ico{width:44px;height:44px;border-radius:10px;background:var(--cyan-50);color:var(--navy);display:grid;place-items:center;flex:none;}
+  .dl-item__name{font-size:14px;font-weight:600;color:var(--navy);}
+  .dl-item__meta{font-size:11.5px;color:var(--ink-3);font-family:var(--font-mono);margin-top:2px;letter-spacing:0.04em;}
+  .dl-item__btn{margin-left:auto;color:var(--cyan-600);font-size:18px;}
+
+  @media(max-width:980px){
+    .labs-grid,.certs-grid,.how-grid{grid-template-columns:1fr;}
+    .dl-grid{grid-template-columns:1fr 1fr;}
+    .certs-grid{grid-template-columns:1fr 1fr;}
+    .stat-row{gap:24px;}
+  }
+  @media(max-width:640px){
+    .dl-grid,.certs-grid{grid-template-columns:1fr;}
+    .result-row{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="04 Research" id="ledg-header" data-active="badania"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Badania i certyfikaty</span>
+</div></div>
+
+<section class="research-hero"><div class="shell">
+  <div class="research-hero__grid">
+    <div>
+      <div class="eyebrow">Dokumentacja naukowa</div>
+      <h1>Badania i certyfikaty EVSun</h1>
+      <p>Skuteczność technologii EVLN potwierdzona w niezależnych laboratoriach na trzech kontynentach. Wszystkie wyniki dostępne w formie pełnych raportów PDF.</p>
+    </div>
+    <div style="text-align:right">
+      <a href="downloads.html" class="btn btn--primary">Pobierz wszystkie dokumenty</a>
+    </div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-item__val">99,71%</div><div class="stat-item__lbl">redukcja S. aureus · 6h · TÜV SÜD</div></div>
+    <div class="stat-item"><div class="stat-item__val">99,98%</div><div class="stat-item__lbl">redukcja E. coli · 24h · UGENE</div></div>
+    <div class="stat-item"><div class="stat-item__val">5</div><div class="stat-item__lbl">niezależnych laboratoriów</div></div>
+    <div class="stat-item"><div class="stat-item__val">8</div><div class="stat-item__lbl">certyfikatów i atestów</div></div>
+  </div>
+  <div class="disclaimer-banner" style="margin-top:28px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+    <span><strong>Ważna informacja:</strong> Wszystkie wyniki badań odnoszą się do określonych warunków laboratoryjnych (komora testowa, temperatura, wilgotność, czas ekspozycji). Skuteczność w warunkach rzeczywistych zależy od specyfiki instalacji, wysokości montażu, odległości od powierzchni i czasu pracy opraw. EVSun EVLN nie zastępuje standardowych procedur dezynfekcji wymaganych w obiektach medycznych.</span>
+  </div>
+</div></section>
+
+<!-- LABS -->
+<section class="labs"><div class="shell">
+  <div class="section__head">
+    <div class="eyebrow">Wyniki badań</div>
+    <h2>Wyniki z niezależnych laboratoriów</h2>
+  </div>
+  <div class="labs-grid">
+
+    <div class="lab-card">
+      <div class="lab-card__header">
+        <div>
+          <div class="lab-card__name">TÜV SÜD</div>
+          <div class="lab-card__country">Niemcy · Witness Test · 2023</div>
+        </div>
+        <span class="badge">Najwyższe standardy</span>
+      </div>
+      <div class="lab-card__body">
+        <div class="result-row">
+          <span class="result-row__org"><em>Staphylococcus aureus</em></span>
+          <span class="result-row__time">6 h</span>
+          <span class="result-row__pct">99,71%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.71%"></span></div></div>
+      </div>
+      <div class="lab-card__footer">
+        <span>Komora testowa · kontrolowane warunki · certyfikowany Witness Test</span>
+        <a href="downloads.html">Pobierz raport PDF ↓</a>
+      </div>
+    </div>
+
+    <div class="lab-card">
+      <div class="lab-card__header">
+        <div>
+          <div class="lab-card__name">UGENE Laboratory</div>
+          <div class="lab-card__country">Malezja · 2022–2023</div>
+        </div>
+        <span class="badge badge--navy">Seria 4 testów</span>
+      </div>
+      <div class="lab-card__body">
+        <div class="result-row">
+          <span class="result-row__org"><em>S. aureus</em></span>
+          <span class="result-row__time">6 h</span>
+          <span class="result-row__pct">99,714%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.71%"></span></div></div>
+        <div class="result-row">
+          <span class="result-row__org"><em>E. coli</em></span>
+          <span class="result-row__time">6 h</span>
+          <span class="result-row__pct">99,668%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.67%"></span></div></div>
+        <div class="result-row">
+          <span class="result-row__org"><em>S. aureus</em></span>
+          <span class="result-row__time">24 h</span>
+          <span class="result-row__pct">99,938%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.94%"></span></div></div>
+        <div class="result-row">
+          <span class="result-row__org"><em>E. coli</em></span>
+          <span class="result-row__time">24 h</span>
+          <span class="result-row__pct">99,984%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.98%"></span></div></div>
+      </div>
+      <div class="lab-card__footer">
+        <span>Próba kontrolna · komora testowa ISO</span>
+        <a href="downloads.html">Pobierz raporty ↓</a>
+      </div>
+    </div>
+
+    <div class="lab-card">
+      <div class="lab-card__header">
+        <div>
+          <div class="lab-card__name">IBPRS</div>
+          <div class="lab-card__country">Polska · Instytut Biotechnologii Przemysłu Rolno-Spożywczego</div>
+        </div>
+        <span class="badge badge--success">Polska · PL</span>
+      </div>
+      <div class="lab-card__body">
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.65;margin-bottom:16px">Badania w warunkach zbliżonych do przemysłu spożywczego — kuchnie, linie produkcyjne. Wyniki potwierdzają skuteczność w środowiskach gastronomicznych i HACCP.</p>
+        <div class="result-row">
+          <span class="result-row__org"><em>Staphylococcus aureus</em></span>
+          <span class="result-row__time">6 h</span>
+          <span class="result-row__pct">99,71%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.71%"></span></div></div>
+        <div class="result-row">
+          <span class="result-row__org"><em>Escherichia coli</em></span>
+          <span class="result-row__time">6 h</span>
+          <span class="result-row__pct">99,67%</span>
+        </div>
+        <div class="result-row"><div class="result-row__bar"><span style="width:99.67%"></span></div></div>
+        <div class="result-row">
+          <span class="result-row__org">Bakterie (środowisko spożywcze)</span>
+          <span class="result-row__time">ciągła ekspozycja</span>
+          <span class="result-row__pct">redukcja</span>
+        </div>
+      </div>
+      <div class="lab-card__footer">
+        <span>Dedykowane dla branży gastronomicznej i food service</span>
+        <a href="downloads.html">Pobierz atest IBPRS ↓</a>
+      </div>
+    </div>
+
+    <div class="lab-card">
+      <div class="lab-card__header">
+        <div>
+          <div class="lab-card__name">IAQ Proof of Concept</div>
+          <div class="lab-card__country">Szpital — warunki rzeczywiste · Polska · 2024</div>
+        </div>
+        <span class="badge" style="background:rgba(21,128,61,0.1);color:var(--success)">Real-world PoC</span>
+      </div>
+      <div class="lab-card__body">
+        <p style="font-size:14px;color:var(--ink-2);line-height:1.65">Pilotażowe wdrożenie w oddziale szpitalnym — pomiary stężenia bakterii i grzybów w powietrzu (badanie IAQ) przed instalacją i po 14 dniach pracy opraw EVSun.</p>
+        <div class="result-row" style="margin-top:14px">
+          <span class="result-row__org">Bakterie + grzyby · powietrze</span>
+          <span class="result-row__time">14 dni</span>
+          <span class="result-row__pct" style="font-size:16px">Znaczna redukcja</span>
+        </div>
+      </div>
+      <div class="lab-card__footer">
+        <span>Wyniki na zamówienie — raport dostępny dla klientów B2B</span>
+        <a href="b2b.html">Poproś o dostęp ↓</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CERTS -->
+<section class="certs"><div class="shell">
+  <div class="section__head section__head--center">
+    <div class="eyebrow">Certyfikaty i atesty</div>
+    <h2>Pełne portfolio certyfikacji EVSun</h2>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-card__logo">CE</div>
+      <h4>Deklaracja zgodności CE</h4>
+      <p>Zgodność z dyrektywami UE: EMC 2014/30/UE, LVD 2014/35/UE, RoHS 2011/65/UE.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">EU</span><span class="cert-card__badge">Obowiązkowy</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo">PZH</div>
+      <h4>Atest higieniczny PZH</h4>
+      <p>Narodowy Instytut Zdrowia Publicznego — PZH, Warszawa. Potwierdzenie bezpieczeństwa higienicznego.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">Polska</span><span class="cert-card__badge">Wymagany szpitale</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo">TÜV</div>
+      <h4>TÜV SÜD Witness Test</h4>
+      <p>Certyfikowany test skuteczności w obecności niezależnego obserwatora TÜV SÜD. 99,71% redukcji S. aureus.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">Niemcy</span><span class="cert-card__badge">Witness</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo">UGENE</div>
+      <h4>UGENE Laboratory Report</h4>
+      <p>Seria 4 testów mikrobiologicznych — S. aureus i E. coli w czasie 6h i 24h w warunkach laboratoryjnych.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">Malezja</span><span class="cert-card__badge">ISO Lab</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo">IBPRS</div>
+      <h4>Atest IBPRS</h4>
+      <p>Instytut Biotechnologii Przemysłu Rolno-Spożywczego — dla środowisk gastronomicznych i food service.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">Polska</span><span class="cert-card__badge">HACCP</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo">SIRIM</div>
+      <h4>SIRIM QAS International</h4>
+      <p>Malezyjska certyfikacja bezpieczeństwa i jakości produktu. Standard MS IEC 62471 (fotobiologia).</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">Malezja</span><span class="cert-card__badge">MS IEC 62471</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo" style="font-size:10px">ISO<br>9001</div>
+      <h4>ISO 9001:2015</h4>
+      <p>System zarządzania jakością producenta EVSun — procesy produkcji, kontrola jakości, dokumentacja.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">EVSun Factory</span></div>
+      <div class="cert-card__dl"><a href="downloads.html" class="btn btn--ghost btn--sm">Pobierz PDF ↓</a></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-card__logo" style="font-size:10px">ABCi<br>PAT</div>
+      <h4>Patent EVLN (ABCi)</h4>
+      <p>Ochrona patentowa technologii EVLN w Polsce i UE. Numer: PL · ABCi · 2021/0034.</p>
+      <div class="cert-card__badges"><span class="cert-card__badge">PL</span><span class="cert-card__badge">EU EPO</span><span class="cert-card__badge">WIPO PCT</span></div>
+      <div class="cert-card__dl"><a href="technology.html" class="btn btn--ghost btn--sm">Więcej o patencie →</a></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOW WE TEST -->
+<section class="how"><div class="shell">
+  <div class="how-grid">
+    <div>
+      <div class="eyebrow">Metodologia</div>
+      <h2>Jak przeprowadzamy badania</h2>
+      <div class="how-steps">
+        <div class="how-step"><div class="how-step__num">1</div><div><h4>Niezależne laboratorium</h4><p>Wszystkie badania zlecane zewnętrznym laboratoriom — bez wpływu producenta na wyniki.</p></div></div>
+        <div class="how-step"><div class="how-step__num">2</div><div><h4>Standaryzowane warunki testowe</h4><p>Komora testowa, kontrolowana temperatura (~25°C), wilgotność, czas ekspozycji i odległość od źródła.</p></div></div>
+        <div class="how-step"><div class="how-step__num">3</div><div><h4>Próba kontrolna i próba testowa</h4><p>Każdy test zawiera grupę kontrolną bez działania światła — wyniki porównawcze.</p></div></div>
+        <div class="how-step"><div class="how-step__num">4</div><div><h4>Pełna dokumentacja</h4><p>Raport PDF z surymi danymi, warunkami testu, podpisem laboratorium i datą wykonania.</p></div></div>
+      </div>
+    </div>
+    <div class="how-vis">
+      <h3>Podsumowanie wyników</h3>
+      <p>Wszystkie testy przeprowadzone w określonych warunkach laboratoryjnych. Wyniki w warunkach rzeczywistych mogą się różnić w zależności od specyfiki instalacji.</p>
+      <div class="how-vis__stats">
+        <div class="how-stat"><div class="how-stat__val">5</div><div class="how-stat__lbl">niezależnych laboratoriów w 3 krajach</div></div>
+        <div class="how-stat"><div class="how-stat__val">2022–<br>2024</div><div class="how-stat__lbl">lata przeprowadzonych badań</div></div>
+        <div class="how-stat"><div class="how-stat__val">S. aureus<br>E. coli</div><div class="how-stat__lbl">testowane mikroorganizmy</div></div>
+        <div class="how-stat"><div class="how-stat__val">6–24h</div><div class="how-stat__lbl">czasy ekspozycji w testach</div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- DOWNLOADS -->
+<section class="dl-section"><div class="shell">
+  <div class="section__head" style="margin-bottom:32px">
+    <div class="eyebrow">Do pobrania</div>
+    <h2>Pobierz dokumenty badań i certyfikatów</h2>
+  </div>
+  <div class="dl-grid">
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="dl-item__name">Raport TÜV SÜD Witness Test</div><div class="dl-item__meta">PDF · 1.2 MB · EN</div></div><span class="dl-item__btn">↓</span></a>
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div><div class="dl-item__name">Raporty UGENE Lab (4 testy)</div><div class="dl-item__meta">ZIP · 3.8 MB · EN</div></div><span class="dl-item__btn">↓</span></a>
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="dl-item__name">Atest higieniczny PZH</div><div class="dl-item__meta">PDF · 420 KB · PL</div></div><span class="dl-item__btn">↓</span></a>
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="dl-item__name">Atest IBPRS (gastronomia)</div><div class="dl-item__meta">PDF · 380 KB · PL</div></div><span class="dl-item__btn">↓</span></a>
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><div><div class="dl-item__name">Deklaracje zgodności CE (komplet)</div><div class="dl-item__meta">ZIP · 2.1 MB · PL/EN</div></div><span class="dl-item__btn">↓</span></a>
+    <a href="downloads.html" class="dl-item"><div class="dl-item__ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="dl-item__name">Pakiet inwestora (wszystko)</div><div class="dl-item__meta">ZIP · 18 MB · PL/EN</div></div><span class="dl-item__btn">↓</span></a>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <a href="downloads.html" class="btn btn--primary">Centrum dokumentów — wszystkie pliki</a>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+</body>
+</html>

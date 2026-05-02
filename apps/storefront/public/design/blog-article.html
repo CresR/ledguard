@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Oświetlenie dezynfekujące bez UV — jak działa technologia EVLN? | Blog LEDGUARD</title>
+<meta name="description" content="Wyjaśniamy mechanizm fotochemiczny EVLN: absorpcja fotonów, porfiryny, reaktywne formy tlenu. Bez UV, bez chemii — jak to możliwe?" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs{padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  .art-layout{display:grid;grid-template-columns:1fr 320px;gap:56px;padding:48px 0 80px;align-items:start;}
+
+  /* article */
+  .art-header{margin-bottom:32px;}
+  .art-header__cat{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;}
+  .art-header h1{font-size:clamp(28px,3vw,42px);line-height:1.15;margin-bottom:16px;}
+  .art-header__meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--ink-3);flex-wrap:wrap;}
+  .art-header__meta strong{color:var(--navy);}
+  .art-header__meta .dot{color:var(--ink-4);}
+  .art-cover{border-radius:16px;overflow:hidden;aspect-ratio:16/8;margin-bottom:36px;}
+
+  /* article typography */
+  .art-body{font-size:16px;line-height:1.75;color:var(--ink-2);}
+  .art-body h2{font-size:26px;margin:48px 0 16px;color:var(--navy);}
+  .art-body h3{font-size:20px;margin:36px 0 12px;color:var(--navy);}
+  .art-body p{margin:0 0 20px;}
+  .art-body ul,.art-body ol{margin:0 0 20px;padding-left:24px;}
+  .art-body li{margin-bottom:8px;}
+  .art-body strong{color:var(--navy);}
+  .art-body em{font-style:italic;}
+  .art-body a{color:var(--cyan-600);text-decoration:underline;text-underline-offset:3px;}
+  .art-body blockquote{
+    margin:28px 0;padding:20px 24px;
+    border-left:4px solid var(--cyan);
+    background:var(--tint);border-radius:0 10px 10px 0;
+    font-size:15px;color:var(--ink-2);font-style:italic;
+  }
+  .art-body .callout{
+    margin:28px 0;padding:20px 24px;
+    background:rgba(15,31,76,0.04);border:1px solid var(--line);
+    border-radius:12px;border-left:4px solid var(--navy);
+    font-size:14.5px;
+  }
+  .art-body .callout strong{display:block;margin-bottom:6px;}
+  .art-data{
+    margin:28px 0;overflow:hidden;border-radius:14px;
+    border:1px solid var(--line);
+  }
+  .art-data table{width:100%;border-collapse:collapse;font-size:14px;}
+  .art-data thead{background:var(--tint);}
+  .art-data th{padding:12px 16px;text-align:left;font-weight:600;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .art-data td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:middle;}
+  .art-data tbody tr:last-child td{border-bottom:0;}
+  .art-data tbody tr:hover{background:var(--tint);}
+  .art-data .pct{font-family:var(--font-mono);font-weight:700;color:var(--cyan-600);}
+
+  /* share + tags */
+  .art-footer{margin-top:48px;padding-top:32px;border-top:1px solid var(--line);}
+  .art-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;}
+  .art-share{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--ink-3);}
+  .art-share a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);border-radius:8px;color:var(--ink-2);font-size:13px;transition:120ms;}
+  .art-share a:hover{border-color:var(--navy);color:var(--navy);}
+
+  /* related */
+  .related{margin-top:56px;}
+  .related h3{font-size:20px;margin-bottom:20px;}
+  .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .rel-card{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;transition:200ms;}
+  .rel-card:hover{box-shadow:var(--shadow-md);}
+  .rel-card__ph{aspect-ratio:16/9;}
+  .rel-card__body{padding:16px;}
+  .rel-card__cat{font-family:var(--font-mono);font-size:10.5px;color:var(--cyan-600);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:6px;}
+  .rel-card h4{font-size:14.5px;line-height:1.35;color:var(--navy);}
+  .rel-card__meta{font-size:11.5px;color:var(--ink-3);margin-top:8px;}
+
+  /* sidebar */
+  .art-sidebar{position:sticky;top:132px;}
+  .sidebar-toc{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;}
+  .sidebar-toc h4{font-size:12px;font-weight:600;color:var(--ink-3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:14px;}
+  .toc-list{list-style:none;margin:0;padding:0;display:grid;gap:2px;}
+  .toc-list a{display:block;padding:7px 10px;border-radius:7px;font-size:13px;color:var(--ink-2);transition:120ms;}
+  .toc-list a:hover,.toc-list a.is-active{background:var(--tint);color:var(--navy);font-weight:500;}
+  .toc-list .sub{padding-left:22px;font-size:12.5px;color:var(--ink-3);}
+
+  .sidebar-cta{background:linear-gradient(135deg,#0F1F4C,#1B2D63);border-radius:14px;padding:24px;color:rgba(255,255,255,0.85);margin-bottom:18px;position:relative;overflow:hidden;}
+  .sidebar-cta::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(0,180,216,0.3),transparent 65%);}
+  .sidebar-cta h4{color:var(--white);font-size:15px;margin-bottom:8px;position:relative;z-index:1;}
+  .sidebar-cta p{font-size:12.5px;color:rgba(255,255,255,0.7);margin-bottom:14px;line-height:1.5;position:relative;z-index:1;}
+  .sidebar-cta .btn{width:100%;justify-content:center;position:relative;z-index:1;}
+
+  @media(max-width:980px){
+    .art-layout{grid-template-columns:1fr;}
+    .art-sidebar{position:static;}
+    .related-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:640px){.related-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header data-screen-label="09b Blog Article" id="ledg-header" data-active="blog"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <a href="blog.html">Blog</a><span class="sep">/</span>
+  <span>Oświetlenie dezynfekujące bez UV — jak działa EVLN?</span>
+</div></div>
+
+<section style="padding:0"><div class="shell">
+  <div class="art-layout">
+
+    <article>
+      <div class="art-header">
+        <div class="art-header__cat">Technologia · Wyróżniony</div>
+        <h1>Oświetlenie dezynfekujące bez UV — jak działa technologia EVLN?</h1>
+        <div class="art-header__meta">
+          <strong>Zespół LEDGUARD</strong>
+          <span class="dot">·</span>
+          <span>28 kwietnia 2026</span>
+          <span class="dot">·</span>
+          <span>8 min czytania</span>
+          <span class="dot">·</span>
+          <span>Technologia, EVLN, Dezynfekcja</span>
+        </div>
+      </div>
+
+      <div class="art-cover ph ph--photo"><div class="ph__label">Cover: laboratorium z lampą EVSun · 1600×800</div></div>
+
+      <div class="art-body">
+        <p>Przez lata dezynfekcja pomieszczeń kojarzyła się albo z agresywną chemią, albo z niebezpiecznymi lampami UV-C, które wymagały opróżnienia sal i specjalnych procedur BHP. Technologia EVLN (Enhanced Visible Light Node) zmienia ten paradygmat — <strong>pozwala na stałą, pasywną higienizację środowiska przy użyciu zwykłego, widocznego światła</strong>.</p>
+
+        <blockquote>„EVSun nie zastępuje dezynfekcji chemicznej. Uzupełnia ją — działając nieprzerwanie, bez obsługi, w obecności ludzi."</blockquote>
+
+        <h2 id="czym-jest-evln">Czym jest technologia EVLN?</h2>
+        <p>EVLN to opatentowana technologia integracji specyficznego zakresu widocznego spektrum świetlnego (450–600 nm) z konwencjonalnym oświetleniem LED. Diody w lampach EVSun emitują — oprócz białego światła do oświetlenia pomieszczenia — dodatkowy komponent spektralny, który oddziałuje na mikroorganizmy obecne w otoczeniu.</p>
+        <p>Kluczowe jest to, że <strong>cały zakres działania EVLN mieści się w spektrum widzialnym</strong> — brak emisji UV-A, UV-B i UV-C. Lampy są bezpieczne do ciągłego użytkowania w obecności ludzi, dzieci i zwierząt.</p>
+
+        <h2 id="mechanizm">Mechanizm fotochemiczny — krok po kroku</h2>
+        <h3>1. Emisja fotonu w zakresie 450–600 nm</h3>
+        <p>Lampa EVSun emituje światło białe z wbudowanym komponentem spektralnym w zakresie 450–600 nm. Jest to widoczne dla oka zielono-żółte światło — nie powoduje żadnego dyskomfortu wizualnego ani zagrożenia dla wzroku.</p>
+
+        <h3>2. Absorpcja przez fotouczulacze (porfiryny)</h3>
+        <p>W komórkach bakterii i grzybów (m.in. <em>Staphylococcus aureus, Escherichia coli, Aspergillus</em>) naturalnie występują związki zwane <strong>porfirynami</strong>. Są to fotouczulacze — cząsteczki zdolne do absorpcji energii świetlnej w określonym zakresie spektrum. Porfiryny bakteryjne mają maksimum absorpcji właśnie w zakresie bliskim emisji EVLN.</p>
+
+        <h3>3. Powstanie reaktywnych form tlenu (ROS)</h3>
+        <p>Pochłoniięta energia wzbudza porfiryny do wyższego stanu energetycznego. W obecności tlenu cząsteczkowego dochodzi do transferu energii i powstania <strong>reaktywnych form tlenu (ROS)</strong> — głównie singletowego tlenu (¹O₂) oraz rodników hydroksylowych (·OH). ROS są wysoce reaktywne chemicznie.</p>
+
+        <h3>4. Peroksydacja lipidów błony komórkowej</h3>
+        <p>ROS atakują nienasycone kwasy tłuszczowe w fosfolipidach błony komórkowej bakterii. Peroksydacja lipidów prowadzi do utraty integralności błony, wycieku zawartości komórki i ostatecznie jej śmierci. Proces jest nieodwracalny dla mikroorganizmu.</p>
+
+        <div class="callout">
+          <strong>Dlaczego nie rozwija się oporność?</strong>
+          Antybiotyki atakują specyficzne białka lub enzymy — bakterie mogą ewoluować, zmieniając strukturę tych celów. ROS atakują błonę lipidową, która jest fundamentalnym elementem każdej komórki bakteryjnej. Zmiana jej struktury podważałaby żywotność komórki — mechanizm oporności jest tu niezwykle trudny do wykształcenia.
+        </div>
+
+        <h2 id="wyniki">Wyniki badań laboratoryjnych</h2>
+        <p>Skuteczność EVLN potwierdzono w niezależnych badaniach laboratoryjnych przeprowadzonych na trzech kontynentach:</p>
+
+        <div class="art-data">
+          <table>
+            <thead><tr><th>Laboratorium</th><th>Mikroorganizm</th><th>Czas</th><th>Redukcja</th></tr></thead>
+            <tbody>
+              <tr><td>TÜV SÜD (Niemcy)</td><td><em>S. aureus</em></td><td>6 h</td><td class="pct">99,71%</td></tr>
+              <tr><td>UGENE Lab (Malezja)</td><td><em>S. aureus</em></td><td>6 h</td><td class="pct">99,714%</td></tr>
+              <tr><td>UGENE Lab (Malezja)</td><td><em>E. coli</em></td><td>6 h</td><td class="pct">99,668%</td></tr>
+              <tr><td>UGENE Lab (Malezja)</td><td><em>S. aureus</em></td><td>24 h</td><td class="pct">99,938%</td></tr>
+              <tr><td>UGENE Lab (Malezja)</td><td><em>E. coli</em></td><td>24 h</td><td class="pct">99,984%</td></tr>
+              <tr><td>IBPRS (Polska)</td><td>Środowisko spożywcze</td><td>ciągła</td><td class="pct">redukcja</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout">
+          <strong>Ważna informacja:</strong>
+          Powyższe wyniki uzyskano w określonych warunkach laboratoryjnych (komora testowa, kontrolowana temperatura i wilgotność, określona odległość od źródła). Skuteczność w warunkach rzeczywistych zależy od specyfiki instalacji. EVSun EVLN nie zastępuje standardowych procedur dezynfekcji w obiektach medycznych.
+        </div>
+
+        <h2 id="porownanie">EVLN vs UV-C — kluczowe różnice</h2>
+        <p>Zarówno EVLN, jak i UV-C powodują śmierć mikroorganizmów — ale mechanizm i warunki użytkowania są fundamentalnie różne:</p>
+        <ul>
+          <li><strong>UV-C</strong> niszczy DNA bakterii — jest bardzo skuteczny, ale emituje promieniowanie niebezpieczne dla ludzi. Wymaga opróżnienia pomieszczenia.</li>
+          <li><strong>EVLN</strong> atakuje fotouczulacze w błonie komórkowej — jest bezpieczne w obecności ludzi, pracuje ciągle 24/7.</li>
+        </ul>
+        <p>UV-C i EVLN nie wykluczają się — mogą być stosowane komplementarnie w środowiskach o najwyższych wymaganiach higienicznych.</p>
+
+        <h2 id="zastosowania">Gdzie sprawdza się EVLN?</h2>
+        <p>Technologia EVLN jest szczególnie efektywna w środowiskach, gdzie utrzymanie ciągłej higieny jest trudne — ponieważ pracuje nieprzerwanie, bez obsługi:</p>
+        <ul>
+          <li>Sale chorych i gabinety lekarskie — wsparcie redukcji HAI</li>
+          <li>Kuchnie gastronomiczne — przy liniach produkcji żywności (HACCP)</li>
+          <li>Biura i szkoły — ograniczenie sezonowych infekcji</li>
+          <li>Hotele — dyskretna higiena pokoi i stref wspólnych</li>
+          <li>Hale produkcyjne — strefy o podwyższonych wymaganiach sanitarnych</li>
+        </ul>
+
+        <h2 id="podsumowanie">Podsumowanie</h2>
+        <p>EVLN to technologia, która łączy dwie funkcje w jednym produkcie — energooszczędne oświetlenie LED oraz pasywną higienizację środowiska przy użyciu widocznego spektrum świetlnego. Jest bezpieczna, nie wymaga obsługi i działa przez cały czas pracy lampy.</p>
+        <p>Nie jest to technologia zastępująca procedury dezynfekcji — jest ich uzupełnieniem, które działa 24 godziny na dobę, bez chemii i bez UV.</p>
+      </div>
+
+      <div class="art-footer">
+        <div class="art-tags">
+          <span class="chip">EVLN</span>
+          <span class="chip">dezynfekcja</span>
+          <span class="chip">LED</span>
+          <span class="chip">porfiryny</span>
+          <span class="chip">ROS</span>
+          <span class="chip">spektrum widzialne</span>
+          <span class="chip">bez UV</span>
+        </div>
+        <div class="art-share">
+          <span>Udostępnij:</span>
+          <a href="#">LinkedIn</a>
+          <a href="#">E-mail</a>
+          <a href="#" onclick="navigator.clipboard.writeText(location.href);LEDG.toast('Link skopiowany');event.preventDefault()">Kopiuj link</a>
+        </div>
+      </div>
+
+      <div class="related">
+        <h3>Powiązane artykuły</h3>
+        <div class="related-grid">
+          <a href="blog-article.html" class="rel-card">
+            <div class="rel-card__ph ph"><div class="ph__label">Cover</div></div>
+            <div class="rel-card__body"><div class="rel-card__cat">Healthcare</div><h4>Jak dobrać oświetlenie do gabinetu lekarskiego?</h4><div class="rel-card__meta">12 min · 21.04.2026</div></div>
+          </a>
+          <a href="blog-article.html" class="rel-card">
+            <div class="rel-card__ph ph"><div class="ph__label">Cover</div></div>
+            <div class="rel-card__body"><div class="rel-card__cat">Technologia</div><h4>Blue Care — dlaczego niebieskie spektrum zaburza sen</h4><div class="rel-card__meta">11 min · 24.03.2026</div></div>
+          </a>
+          <a href="blog-article.html" class="rel-card">
+            <div class="rel-card__ph ph"><div class="ph__label">Cover</div></div>
+            <div class="rel-card__body"><div class="rel-card__cat">Gastronomia</div><h4>HACCP a oświetlenie — co mówią przepisy</h4><div class="rel-card__meta">9 min · 07.04.2026</div></div>
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <aside class="art-sidebar">
+      <div class="sidebar-toc">
+        <h4>Spis treści</h4>
+        <ul class="toc-list">
+          <li><a href="#czym-jest-evln">Czym jest technologia EVLN?</a></li>
+          <li><a href="#mechanizm">Mechanizm fotochemiczny</a></li>
+          <li class="sub"><a href="#mechanizm">1. Emisja fotonu</a></li>
+          <li class="sub"><a href="#mechanizm">2. Absorpcja przez porfiryny</a></li>
+          <li class="sub"><a href="#mechanizm">3. Powstanie ROS</a></li>
+          <li class="sub"><a href="#mechanizm">4. Dezintegracja komórki</a></li>
+          <li><a href="#wyniki">Wyniki badań</a></li>
+          <li><a href="#porownanie">EVLN vs UV-C</a></li>
+          <li><a href="#zastosowania">Zastosowania</a></li>
+          <li><a href="#podsumowanie">Podsumowanie</a></li>
+        </ul>
+      </div>
+      <div class="sidebar-cta">
+        <h4>Chcesz wdrożyć EVSun?</h4>
+        <p>Dobierzemy produkty i przygotujemy wycenę B2B z pełną dokumentacją w 24h.</p>
+        <a href="b2b.html" class="btn btn--accent btn--sm">Zapytanie B2B →</a>
+      </div>
+      <div class="sidebar-cta" style="background:var(--tint);border:1px solid var(--line)">
+        <h4 style="color:var(--navy)">Pobierz raport TÜV SÜD</h4>
+        <p style="color:var(--ink-3)">Pełny raport Witness Test — 99,71% redukcji S. aureus po 6h.</p>
+        <a href="downloads.html" class="btn btn--primary btn--sm" style="width:100%;justify-content:center">Pobierz PDF ↓</a>
+      </div>
+    </aside>
+
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  // TOC active state on scroll
+  const headings = document.querySelectorAll('.art-body h2, .art-body h3');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    headings.forEach(h => { if (h.getBoundingClientRect().top < 200) current = h.id; });
+    tocLinks.forEach(a => {
+      a.classList.toggle('is-active', a.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>

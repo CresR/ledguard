@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kontakt — LEDGUARD | Pomoc techniczna, wyceny B2B, konsultacje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs { padding: 16px 0; font-size: 13px; color: var(--ink-3); border-bottom: 1px solid var(--line); }
+  .crumbs a { color: var(--ink-3); } .crumbs a:hover { color: var(--navy); }
+  .crumbs span { color: var(--ink); font-weight: 500; }
+  .crumbs .sep { margin: 0 10px; color: var(--ink-4); }
+
+  .contact-hero {
+    background: linear-gradient(180deg, var(--tint) 0%, var(--white) 100%);
+    padding: 64px 0 48px; border-bottom: 1px solid var(--line);
+  }
+  .contact-hero h1 { font-size: clamp(32px, 3.5vw, 48px); }
+  .contact-hero p { color: var(--ink-2); font-size: 17px; margin-top: 12px; max-width: 640px; }
+
+  .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; padding: 64px 0 80px; align-items: start; }
+
+  /* form */
+  .contact-form { background: var(--white); }
+  .form-tabs { display: flex; border-bottom: 1px solid var(--line); margin-bottom: 28px; }
+  .form-tab {
+    padding: 14px 20px; font-size: 14.5px; font-weight: 500; color: var(--ink-3);
+    border-bottom: 2px solid transparent; cursor: pointer; background: none; border-top: 0; border-left: 0; border-right: 0;
+    font-family: inherit; transition: 120ms;
+  }
+  .form-tab:hover { color: var(--navy); }
+  .form-tab.is-active { color: var(--navy); border-bottom-color: var(--cyan); font-weight: 600; }
+  .form-pane { display: none; }
+  .form-pane.is-active { display: grid; gap: 16px; animation: fadeIn 200ms; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-footer { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+  .form-success {
+    display: none;
+    padding: 24px; background: var(--success-50); border: 1px solid var(--success);
+    border-radius: 12px; color: var(--success); font-weight: 600;
+    align-items: center; gap: 12px; font-size: 15px;
+  }
+  .form-success.is-visible { display: flex; }
+
+  /* contact details */
+  .contact-info { position: sticky; top: 120px; }
+  .info-card {
+    background: var(--white); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px; margin-bottom: 14px;
+  }
+  .info-card h4 { font-size: 13px; font-weight: 600; color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 14px; }
+  .info-row { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
+  .info-row:first-of-type { border-top: 0; }
+  .info-row svg { color: var(--cyan-600); flex: none; margin-top: 2px; }
+  .info-row a { color: var(--navy); font-weight: 500; }
+  .info-row a:hover { color: var(--cyan-600); }
+  .info-row small { display: block; font-size: 12px; color: var(--ink-3); margin-top: 2px; }
+  .hours { background: var(--tint); border-radius: 12px; padding: 18px; margin-top: 8px; }
+  .hours-row { display: flex; justify-content: space-between; font-size: 13.5px; padding: 6px 0; border-bottom: 1px solid var(--line-strong); }
+  .hours-row:last-child { border-bottom: 0; }
+  .hours-row span { color: var(--ink-3); }
+  .hours-row strong { color: var(--navy); font-variant-numeric: tabular-nums; }
+
+  /* map placeholder */
+  .map-ph {
+    border-radius: 14px; overflow: hidden; margin-top: 14px;
+    aspect-ratio: 16/7;
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-info { position: static; }
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="08 Contact" id="ledg-header" data-active="kontakt"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Kontakt</span>
+</div></div>
+
+<section class="contact-hero"><div class="shell">
+  <div class="eyebrow">Porozmawiajmy</div>
+  <h1>Kontakt i wsparcie techniczne</h1>
+  <p>Masz pytania o produkty, chcesz wycenę projektu, potrzebujesz dokumentacji lub wsparcia technicznego? Jesteśmy dostępni od poniedziałku do piątku.</p>
+</div></section>
+
+<section><div class="shell">
+  <div class="contact-grid">
+
+    <div class="contact-form">
+      <div class="form-tabs" role="tablist">
+        <button class="form-tab is-active" data-tab="zapytanie">Ogólne zapytanie</button>
+        <button class="form-tab" data-tab="b2b">Wycena B2B</button>
+        <button class="form-tab" data-tab="tech">Pomoc techniczna</button>
+        <button class="form-tab" data-tab="reklamacja">Reklamacja</button>
+      </div>
+
+      <form id="contact-form" onsubmit="submitForm(event)">
+        <div class="form-pane is-active" data-pane="zapytanie">
+          <div class="form-row-2">
+            <div class="field"><label>Imię i nazwisko <span class="req">*</span></label><input required placeholder="Anna Kowalska" /></div>
+            <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required placeholder="anna@firma.pl" /></div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+48 600 000 000" /></div>
+            <div class="field"><label>Firma</label><input placeholder="Opcjonalnie" /></div>
+          </div>
+          <div class="field"><label>Temat <span class="req">*</span></label>
+            <select required><option value="">Wybierz temat</option><option>Informacje o produktach</option><option>Zapytanie o dostępność</option><option>Pytanie techniczne</option><option>Inne</option></select>
+          </div>
+          <div class="field"><label>Wiadomość <span class="req">*</span></label><textarea required rows="5" placeholder="Opisz, jak możemy pomóc…"></textarea></div>
+          <div class="form-footer">
+            <label class="checkbox"><input type="checkbox" required /><span>Wyrażam zgodę na przetwarzanie danych osobowych w celu odpowiedzi na zapytanie. <a href="#" style="color:var(--cyan-600)">Polityka prywatności</a></span></label>
+            <button type="submit" class="btn btn--primary btn--lg">Wyślij wiadomość</button>
+          </div>
+        </div>
+
+        <div class="form-pane" data-pane="b2b">
+          <div class="form-row-2">
+            <div class="field"><label>Imię i nazwisko <span class="req">*</span></label><input required placeholder="Anna Kowalska" /></div>
+            <div class="field"><label>Firma <span class="req">*</span></label><input required placeholder="Szpital Św. Łukasza Sp. z o.o." /></div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>E-mail służbowy <span class="req">*</span></label><input type="email" required placeholder="anna@firma.pl" /></div>
+            <div class="field"><label>Telefon</label><input type="tel" placeholder="+48 22 000 00 00" /></div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>NIP firmy</label><input placeholder="0000000000" /></div>
+            <div class="field"><label>Typ obiektu</label>
+              <select><option>Szpital / klinika</option><option>Hotel</option><option>Gastronomia</option><option>Biuro</option><option>Produkcja / magazyn</option><option>Szkoła</option><option>Inne</option></select>
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>Szacowana pow. (m²)</label><input type="number" placeholder="1200" /></div>
+            <div class="field"><label>Szacowany budżet netto</label>
+              <select><option>do 20 000 PLN</option><option>20 000 – 100 000 PLN</option><option>100 000 – 500 000 PLN</option><option>powyżej 500 000 PLN</option></select>
+            </div>
+          </div>
+          <div class="field"><label>Opis projektu</label><textarea rows="4" placeholder="Opisz obiekt, liczbę pomieszczeń, specyficzne wymagania (HACCP, klasy czystości, itp.)…"></textarea></div>
+          <div class="field"><label>Załącz rzut / specyfikację (PDF, DWG)</label><input type="file" accept=".pdf,.dwg,.dxf,.jpg,.png" style="height:auto;padding:8px 14px" /></div>
+          <div class="form-footer">
+            <label class="checkbox"><input type="checkbox" required /><span>Wyrażam zgodę na przetwarzanie danych osobowych. <a href="#" style="color:var(--cyan-600)">Polityka prywatności</a></span></label>
+            <button type="submit" class="btn btn--primary btn--lg">Prześlij zapytanie B2B</button>
+          </div>
+        </div>
+
+        <div class="form-pane" data-pane="tech">
+          <div class="form-row-2">
+            <div class="field"><label>Imię i nazwisko <span class="req">*</span></label><input required placeholder="Jan Kowalski" /></div>
+            <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required placeholder="jan@firma.pl" /></div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>Numer seryjny / model produktu</label><input placeholder="EVLN-PL-6060-40" /></div>
+            <div class="field"><label>Data zakupu</label><input type="date" /></div>
+          </div>
+          <div class="field"><label>Opis problemu <span class="req">*</span></label><textarea required rows="5" placeholder="Opisz dokładnie problem: objawy, kiedy wystąpił, warunki instalacji…"></textarea></div>
+          <div class="field"><label>Zdjęcia / dokumenty</label><input type="file" accept="image/*,.pdf" multiple style="height:auto;padding:8px 14px" /></div>
+          <div class="form-footer">
+            <label class="checkbox"><input type="checkbox" required /><span>Wyrażam zgodę na przetwarzanie danych. <a href="#" style="color:var(--cyan-600)">Polityka prywatności</a></span></label>
+            <button type="submit" class="btn btn--primary btn--lg">Wyślij zgłoszenie techniczne</button>
+          </div>
+        </div>
+
+        <div class="form-pane" data-pane="reklamacja">
+          <div class="form-row-2">
+            <div class="field"><label>Imię i nazwisko <span class="req">*</span></label><input required /></div>
+            <div class="field"><label>Nr zamówienia <span class="req">*</span></label><input required placeholder="LG/2026/00000" /></div>
+          </div>
+          <div class="form-row-2">
+            <div class="field"><label>E-mail <span class="req">*</span></label><input type="email" required /></div>
+            <div class="field"><label>Telefon</label><input type="tel" /></div>
+          </div>
+          <div class="field"><label>Model produktu / EAN</label><input placeholder="EVLN-PL-6060-40 · EAN: 5901234567890" /></div>
+          <div class="field"><label>Opis wady <span class="req">*</span></label><textarea required rows="4" placeholder="Opisz dokładnie stwierdzoną wadę…"></textarea></div>
+          <div class="field"><label>Żądanie</label>
+            <select><option>Naprawa gwarancyjna</option><option>Wymiana na nowy</option><option>Zwrot pieniędzy</option></select>
+          </div>
+          <div class="form-footer">
+            <label class="checkbox"><input type="checkbox" required /><span>Potwierdzam prawdziwość podanych danych. <a href="#" style="color:var(--cyan-600)">Regulamin reklamacji</a></span></label>
+            <button type="submit" class="btn btn--primary btn--lg">Złóż reklamację</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="form-success" id="form-success">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Dziękujemy! Odpiszemy w ciągu 1 dnia roboczego.
+      </div>
+    </div>
+
+    <aside class="contact-info">
+      <div class="info-card">
+        <h4>Dane kontaktowe</h4>
+        <div class="info-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:+48221108800">+48 22 110 88 00</a><small>Sprzedaż i B2B</small></div></div>
+        <div class="info-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:+48221108801">+48 22 110 88 01</a><small>Pomoc techniczna</small></div></div>
+        <div class="info-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><a href="mailto:kontakt@ledguard.pl">kontakt@ledguard.pl</a><small>Ogólne zapytania</small></div></div>
+        <div class="info-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg><div><a href="mailto:b2b@ledguard.pl">b2b@ledguard.pl</a><small>Zapytania B2B i projekty</small></div></div>
+        <div class="info-row"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><span>ul. Domaniewska 47<br>02-672 Warszawa</span></div></div>
+      </div>
+
+      <div class="info-card">
+        <h4>Godziny pracy biura</h4>
+        <div class="hours">
+          <div class="hours-row"><span>Poniedziałek – Piątek</span><strong>8:00 – 17:00</strong></div>
+          <div class="hours-row"><span>Sobota</span><strong>Zamknięte</strong></div>
+          <div class="hours-row"><span>Niedziela</span><strong>Zamknięte</strong></div>
+        </div>
+        <p style="font-size:13px;color:var(--ink-3);margin-top:12px">Zamówienia złożone po 14:00 realizowane są następnego dnia roboczego.</p>
+      </div>
+
+      <div class="info-card">
+        <h4>Dane rejestrowe</h4>
+        <div style="font-size:13px;color:var(--ink-2);line-height:1.8">
+          <div><strong style="color:var(--navy)">EVS Sp. z o.o.</strong></div>
+          <div>Kleosin, ul. Wiejska 1, 16-001 Kleosin</div>
+          <div>NIP: 9662131616</div>
+          <div>KRS: 0000541471</div>
+          <div>REGON: 360871680</div>
+          <div>Sąd Rejonowy w Białymstoku, XII Wydział KRS</div>
+        </div>
+      </div>
+
+      <div class="map-ph ph ph--photo"><div class="ph__label">Mapa Google / Mapbox — Domaniewska 47, Warszawa · 1200×500</div></div>
+    </aside>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  document.querySelectorAll('.form-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.form-tab').forEach(b => b.classList.remove('is-active'));
+      document.querySelectorAll('.form-pane').forEach(p => p.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      document.querySelector('[data-pane="' + btn.dataset.tab + '"]').classList.add('is-active');
+    });
+  });
+
+  function submitForm(e) {
+    e.preventDefault();
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('is-visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>

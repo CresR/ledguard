@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zastosowania EVSun EVLN — szpitale, hotele, gastronomia, biura | LEDGUARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs{padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  .app-hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 100%);padding:64px 0 56px;border-bottom:1px solid var(--line);}
+  .app-hero h1{font-size:clamp(32px,3.5vw,48px);}
+  .app-hero p{color:var(--ink-2);font-size:17px;margin-top:12px;max-width:680px;line-height:1.65;}
+
+  /* segment jump links */
+  .seg-nav{padding:20px 0;border-bottom:1px solid var(--line);background:var(--white);position:sticky;top:128px;z-index:20;}
+  .seg-nav__list{display:flex;gap:8px;flex-wrap:wrap;list-style:none;margin:0;padding:0;}
+  .seg-nav__list a{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:9px 18px;border:1.5px solid var(--line-strong);border-radius:999px;
+    font-size:13px;font-weight:500;color:var(--ink-2);background:var(--white);transition:120ms;
+  }
+  .seg-nav__list a:hover{border-color:var(--navy);color:var(--navy);}
+  .seg-nav__list a.is-active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+  /* app section */
+  .app-section{padding:80px 0;border-bottom:1px solid var(--line);}
+  .app-section:last-of-type{border-bottom:0;}
+  .app-section__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+  .app-section__grid--rev{direction:rtl;}
+  .app-section__grid--rev > *{direction:ltr;}
+  .app-section__ph{border-radius:18px;overflow:hidden;aspect-ratio:4/3;}
+  .app-section__body{}
+  .app-section__tag{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+  .app-section h2{font-size:clamp(26px,2.5vw,36px);margin-bottom:14px;}
+  .app-section p{font-size:15px;color:var(--ink-2);line-height:1.7;}
+  .app-benefits{margin-top:20px;display:grid;gap:8px;}
+  .app-benefit{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--ink-2);}
+  .app-benefit svg{color:var(--success);flex:none;margin-top:2px;}
+  .app-products{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;}
+  .app-products .chip{font-family:var(--font-mono);font-size:12px;}
+  .app-ctas{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;}
+
+  /* requirements box */
+  .req-box{
+    margin-top:24px;padding:16px 18px;
+    background:rgba(15,31,76,0.04);border:1px solid var(--line);border-radius:10px;
+    border-left:3px solid var(--cyan);
+    font-size:13px;color:var(--ink-2);line-height:1.55;
+  }
+  .req-box strong{color:var(--navy);}
+
+  /* kpi strip */
+  .kpi-strip{display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;padding:18px;background:var(--tint);border-radius:12px;}
+  .kpi-strip__item{text-align:center;}
+  .kpi-strip__val{font-family:var(--font-display);font-size:26px;font-weight:700;color:var(--navy);letter-spacing:-0.02em;line-height:1;}
+  .kpi-strip__lbl{font-size:11px;color:var(--ink-3);margin-top:2px;font-family:var(--font-mono);}
+
+  @media(max-width:900px){
+    .app-section__grid,.app-section__grid--rev{grid-template-columns:1fr;direction:ltr;}
+    .kpi-strip{gap:16px;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="11 Applications" id="ledg-header" data-active="zastosowania"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Zastosowania</span>
+</div></div>
+
+<section class="app-hero"><div class="shell">
+  <div class="eyebrow">Zastosowania EVSun EVLN</div>
+  <h1>Rozwiązania dla każdego sektora</h1>
+  <p>Technologia EVLN sprawdza się wszędzie tam, gdzie higiena, komfort wzroku i energooszczędność mają kluczowe znaczenie — od sal szpitalnych po kuchnie gastronomiczne i nowoczesne biura.</p>
+</div></section>
+
+<nav class="seg-nav"><div class="shell">
+  <ul class="seg-nav__list">
+    <li><a href="#healthcare" class="is-active">🏥 Healthcare</a></li>
+    <li><a href="#gastronomy">🍽 Gastronomia</a></li>
+    <li><a href="#hotels">🏨 Hotele i SPA</a></li>
+    <li><a href="#offices">🏢 Biura</a></li>
+    <li><a href="#education">🎓 Edukacja</a></li>
+    <li><a href="#industry">🏭 Produkcja</a></li>
+    <li><a href="#home">🏠 Dom</a></li>
+  </ul>
+</div></nav>
+
+<!-- HEALTHCARE -->
+<section class="app-section" id="healthcare"><div class="shell">
+  <div class="app-section__grid">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: sala szpitalna / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Healthcare</div>
+      <h2>Szpitale, kliniki, gabinety lekarskie</h2>
+      <p>Oświetlenie EVSun EVLN wspiera redukcję bakterii i grzybów w środowisku szpitalnym — bez konieczności opróżniania pomieszczeń, bez UV, bez chemii. Idealne dla sal chorych, gabinetów, korytarzy i izolatek.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wsparcie redukcji HAI (zakażeń wewnątrzszpitalnych)</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Praca ciągła 24/7 w obecności pacjentów i personelu</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Dokumentacja do przetargów NFZ i PZP (PZH, CE, TÜV SÜD)</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Non-flicker i Blue Care — komfort pacjentów i personelu</div>
+      </div>
+      <div class="req-box"><strong>Wymagane certyfikaty:</strong> Atest PZH, Deklaracja CE, Raport TÜV SÜD/UGENE — wszystkie dostępne w <a href="downloads.html" style="color:var(--cyan-600)">centrum dokumentów</a>.</div>
+      <div class="kpi-strip">
+        <div class="kpi-strip__item"><div class="kpi-strip__val">99,71%</div><div class="kpi-strip__lbl">redukcja S. aureus 6h</div></div>
+        <div class="kpi-strip__item"><div class="kpi-strip__val">280+</div><div class="kpi-strip__lbl">opraw w szpitalach PL</div></div>
+        <div class="kpi-strip__item"><div class="kpi-strip__val">24/7</div><div class="kpi-strip__lbl">ciągła praca</div></div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-PL panele</span>
+        <span class="chip">EVLN-DL podtynkowe</span>
+        <span class="chip">EVLN-SDL natynkowe</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html?app=healthcare" class="btn btn--primary">Produkty dla Healthcare</a>
+        <a href="b2b.html" class="btn btn--ghost">Wycena B2B</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- GASTRONOMY -->
+<section class="app-section" id="gastronomy" style="background:var(--tint)"><div class="shell">
+  <div class="app-section__grid app-section__grid--rev">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: kuchnia produkcyjna / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Gastronomia i Food Service</div>
+      <h2>Restauracje, hotele, kuchnie produkcyjne</h2>
+      <p>Hermetyczne oprawy EVLN-VL (IP65) nad liniami produkcji żywności, w kuchniach restauracyjnych i magazynach chłodniczych. Wspierają higienę powierzchni i powietrza przy zachowaniu zgodności z HACCP.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>IP65 — odporne na wilgoć, parę i mycie ciśnieniowe</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Atest IBPRS dla branży spożywczej</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Zgodność z wymaganiami HACCP</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Obsługa sieci i franczyz — dokumentacja zbiorowa</div>
+      </div>
+      <div class="req-box"><strong>Wymogi HACCP:</strong> Oprawy IP65, możliwość mycia, brak emisji szkodliwych substancji, dokumentacja higieniczna IBPRS.</div>
+      <div class="app-products">
+        <span class="chip">EVLN-VL IP65</span>
+        <span class="chip">EVLN-T8 tuba</span>
+        <span class="chip">EVLN-HBN HighBay</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html?app=gastronomy" class="btn btn--primary">Produkty dla gastronomii</a>
+        <a href="case-studies.html" class="btn btn--ghost">Realizacje →</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOTELS -->
+<section class="app-section" id="hotels"><div class="shell">
+  <div class="app-section__grid">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: pokój hotelowy / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Hotele i obiekty SPA</div>
+      <h2>Pokoje, restauracje, strefy wellness</h2>
+      <p>Dyskretna higiena bez kompromisów estetycznych. EVSun EVLN w pokojach hotelowych, strefach SPA i łazienkach — podnosi standardy czystości przy zachowaniu atmosfery miejsca.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Blue Care — komfort wzroku gości, lepsza jakość snu</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wiele kształtów i wymiarów — design-friendly</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Możliwość certyfikacji WELL Building Standard</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Znaczna redukcja kosztów energii vs tradycyjne oprawy</div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-DL podtynkowe</span>
+        <span class="chip">EVLN-SDL natynkowe</span>
+        <span class="chip">EVLN-PL panele</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html?app=hotels" class="btn btn--primary">Produkty dla hoteli</a>
+        <a href="b2b.html" class="btn btn--ghost">Wycena B2B</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- OFFICES -->
+<section class="app-section" id="offices" style="background:var(--tint)"><div class="shell">
+  <div class="app-section__grid app-section__grid--rev">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: biuro open space / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Biura i przestrzenie coworkingowe</div>
+      <h2>Open space, sale konferencyjne, recepcje</h2>
+      <p>Non-flicker, Blue Care i EVLN w jednym — mniej absencji chorobowych, lepsza koncentracja i komfort wzroku przez cały dzień pracy. Certyfikacja WELL, BREEAM, LEED.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>UGR ≤ 19, Ra ≥ 80 — standard komfortu wzroku</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>WELL v2 Light category — gotowa dokumentacja</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Integracja KNX / DALI na zamówienie</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Projekt DIALux w ramach wyceny B2B</div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-PL panele 600×600</span>
+        <span class="chip">EVLN-PL 300×1200</span>
+        <span class="chip">EVLN-SDL natynkowe</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html?app=offices" class="btn btn--primary">Produkty dla biur</a>
+        <a href="b2b.html" class="btn btn--ghost">Projekt DIALux</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- EDUCATION -->
+<section class="app-section" id="education"><div class="shell">
+  <div class="app-section__grid">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: sala szkolna / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Edukacja — szkoły i uczelnie</div>
+      <h2>Klasy, aule, świetlice, laboratoria</h2>
+      <p>Bezpieczne dla dzieci — bez UV, z Blue Care i non-flicker. Zmniejsza zmęczenie oczu i sezonowe infekcje w klasach. Finansowanie z programów EduGrant i środków JST.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>500 lx w klasach wg PN-EN 12464-1</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Bez UV — bezpieczne dla uczniów i nauczycieli</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Wsparcie w pozyskaniu EduGrant / MEN</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Protokół odbioru BHP, dokumentacja dla dyrektora</div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-PL 600×600</span>
+        <span class="chip">EVLN-PL 300×1200</span>
+        <span class="chip">EVLN-SDL</span>
+      </div>
+      <div class="app-ctas">
+        <a href="b2b.html" class="btn btn--primary">Wycena dla szkoły</a>
+        <a href="downloads.html" class="btn btn--ghost">Dokumentacja BHP</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- INDUSTRY -->
+<section class="app-section" id="industry" style="background:var(--tint)"><div class="shell">
+  <div class="app-section__grid app-section__grid--rev">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: hala produkcyjna / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Produkcja i magazyny</div>
+      <h2>Hale, chłodnie, magazyny high-bay</h2>
+      <p>Przemysłowe oprawy EVLN-HBN (100–200W, IP65) do hal produkcyjnych, magazynów wysokiego składowania i chłodni. Trwałość L80B10 ≥ 50 000h, klasa EX na zamówienie.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>HighBay 100–200W, IP65, montaż 8–20m</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Leasing i wynajem długoterminowy</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>ROI typowo poniżej 3 lat</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Klasa EX (strefa zagrożona wybuchem) na zamówienie</div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-HBN 100W</span>
+        <span class="chip">EVLN-HBN 150W</span>
+        <span class="chip">EVLN-VL IP65</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html?app=industry" class="btn btn--primary">Produkty przemysłowe</a>
+        <a href="b2b.html" class="btn btn--ghost">Wycena projektu</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- HOME -->
+<section class="app-section" id="home"><div class="shell">
+  <div class="app-section__grid">
+    <div class="app-section__ph ph ph--photo"><div class="ph__label">Zdjęcie: nowoczesne wnętrze domowe / 1200×900</div></div>
+    <div class="app-section__body">
+      <div class="app-section__tag">Dom i mieszkanie</div>
+      <h2>Kuchnia, łazienka, pokój dziecięcy</h2>
+      <p>Zdrowsze światło dla całej rodziny. Blue Care i non-flicker chronią wzrok dzieci i seniorów. Dostępne w sklepie online z dostawą 24–48h.</p>
+      <div class="app-benefits">
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>IP44 do łazienek i kuchni</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Blue Care — zdrowszy sen całej rodziny</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Łatwy montaż — wpust do sufitu podwieszanego</div>
+        <div class="app-benefit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Sklep online, ceny brutto, zwrot 30 dni</div>
+      </div>
+      <div class="app-products">
+        <span class="chip">EVLN-DL IP44</span>
+        <span class="chip">EVLN-SDL okrągłe</span>
+        <span class="chip">EVLN-PL 600×600</span>
+      </div>
+      <div class="app-ctas">
+        <a href="products.html" class="btn btn--primary">Sklep online</a>
+        <a href="blue-care.html" class="btn btn--ghost">Blue Care →</a>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section style="background:var(--navy);padding:72px 0;text-align:center">
+  <div class="shell">
+    <div class="eyebrow" style="color:var(--cyan-400);display:inline-flex;justify-content:center">Dopasowane do Twojego sektora</div>
+    <h2 style="color:var(--white);max-width:680px;margin:0 auto 14px">Nie znalazłeś swojego zastosowania?</h2>
+    <p style="color:rgba(255,255,255,0.75);max-width:520px;margin:0 auto 28px;font-size:16px">Opisz nam obiekt — dopasujemy produkty, przygotujemy projekt i wycenę w 24h.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="b2b.html" class="btn btn--accent btn--lg">Zapytanie B2B</a>
+      <a href="contact.html" class="btn btn--lg" style="background:rgba(255,255,255,0.1);color:#fff;border:1px solid rgba(255,255,255,0.2)">Konsultacja bezpłatna</a>
+    </div>
+  </div>
+</section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  document.querySelectorAll('.seg-nav__list a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('.seg-nav__list a').forEach(b => b.classList.remove('is-active'));
+      a.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>

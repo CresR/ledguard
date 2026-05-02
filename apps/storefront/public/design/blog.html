@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Blog — wiedza o oświetleniu EVSun, EVLN, dezynfekcja | LEDGUARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs{padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  .blog-hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 100%);padding:56px 0 48px;border-bottom:1px solid var(--line);}
+  .blog-hero h1{font-size:clamp(30px,3vw,44px);}
+  .blog-hero p{color:var(--ink-2);font-size:16px;margin-top:10px;max-width:600px;}
+
+  .blog-main{padding:48px 0 80px;}
+  .blog-layout{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start;}
+
+  /* category tabs */
+  .cat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:32px;}
+  .cat-tab{padding:8px 16px;border:1.5px solid var(--line-strong);border-radius:999px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;background:var(--white);transition:120ms;font-family:inherit;}
+  .cat-tab:hover{border-color:var(--navy);color:var(--navy);}
+  .cat-tab.is-active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+  /* featured post */
+  .post-featured{
+    background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+    display:grid;grid-template-columns:1.2fr 1fr;margin-bottom:32px;transition:200ms;
+  }
+  .post-featured:hover{box-shadow:var(--shadow-md);}
+  .post-featured__ph{aspect-ratio:unset;}
+  .post-featured__body{padding:36px;}
+  .post-featured__cat{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;}
+  .post-featured h2{font-size:26px;line-height:1.2;margin-bottom:12px;}
+  .post-featured p{font-size:15px;color:var(--ink-2);line-height:1.65;}
+  .post-featured__meta{display:flex;align-items:center;gap:16px;margin-top:20px;font-size:12.5px;color:var(--ink-3);}
+  .post-featured__meta strong{color:var(--navy);}
+
+  /* post grid */
+  .posts-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .post-card{background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:200ms;}
+  .post-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .post-card__ph{aspect-ratio:16/9;}
+  .post-card__body{padding:20px 22px 22px;}
+  .post-card__cat{font-family:var(--font-mono);font-size:11px;color:var(--cyan-600);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:8px;}
+  .post-card h3{font-size:18px;line-height:1.3;margin-bottom:8px;}
+  .post-card p{font-size:13.5px;color:var(--ink-3);line-height:1.55;}
+  .post-card__meta{display:flex;align-items:center;justify-content:space-between;margin-top:16px;padding-top:14px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);}
+  .post-card__read{font-weight:600;color:var(--cyan-600);}
+
+  /* sidebar */
+  .blog-sidebar{position:sticky;top:132px;}
+  .sidebar-widget{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px;}
+  .sidebar-widget h4{font-size:13px;font-weight:600;color:var(--ink-3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:16px;}
+  .tag-cloud{display:flex;flex-wrap:wrap;gap:8px;}
+  .tag-cloud .chip{font-size:12px;cursor:pointer;}
+  .tag-cloud .chip:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .popular-post{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .popular-post:last-child{border-bottom:0;}
+  .popular-post__num{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--line-strong);flex:none;width:24px;}
+  .popular-post__title{font-size:13.5px;font-weight:600;color:var(--navy);line-height:1.35;}
+  .popular-post__meta{font-size:11.5px;color:var(--ink-3);margin-top:3px;}
+  .newsletter-form{display:grid;gap:10px;margin-top:4px;}
+  .newsletter-form input{height:42px;padding:0 14px;border:1px solid var(--line-strong);border-radius:8px;font-family:inherit;font-size:14px;width:100%;}
+  .newsletter-form input:focus{outline:none;border-color:var(--cyan);}
+
+  @media(max-width:980px){
+    .blog-layout{grid-template-columns:1fr;}
+    .blog-sidebar{position:static;}
+    .post-featured{grid-template-columns:1fr;}
+    .post-featured__ph{aspect-ratio:16/9;}
+    .posts-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="09 Blog" id="ledg-header" data-active="blog"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Blog</span>
+</div></div>
+
+<section class="blog-hero"><div class="shell">
+  <div class="eyebrow">Wiedza i poradniki</div>
+  <h1>Blog LEDGUARD</h1>
+  <p>Artykuły o technologii EVLN, projektowaniu oświetlenia, energooszczędności i higienie w obiektach komercyjnych i medycznych.</p>
+</div></section>
+
+<section class="blog-main"><div class="shell">
+  <div class="blog-layout">
+    <div>
+      <div class="cat-tabs">
+        <button class="cat-tab is-active">Wszystkie</button>
+        <button class="cat-tab">Technologia</button>
+        <button class="cat-tab">Healthcare</button>
+        <button class="cat-tab">Gastronomia</button>
+        <button class="cat-tab">Energooszczędność</button>
+        <button class="cat-tab">Projektowanie</button>
+        <button class="cat-tab">Aktualności</button>
+      </div>
+
+      <!-- FEATURED -->
+      <a href="blog.html" class="post-featured">
+        <div class="post-featured__ph ph ph--photo"><div class="ph__label">Zdjęcie artykułu · 800×600</div></div>
+        <div class="post-featured__body">
+          <div class="post-featured__cat">Technologia · Wyróżniony</div>
+          <h2>Oświetlenie dezynfekujące bez UV — jak działa technologia EVLN?</h2>
+          <p>Wyjaśniamy mechanizm fotochemiczny stojący za EVLN: od absorpcji fotonów przez porfiryny w komórkach bakterii, przez powstanie reaktywnych form tlenu, aż do dezintegracji komórki. Bez UV, bez chemii.</p>
+          <div class="post-featured__meta">
+            <strong>Zespół LEDGUARD</strong>
+            <span>28.04.2026</span>
+            <span>8 min czytania</span>
+          </div>
+          <a href="blog.html" class="btn btn--primary" style="margin-top:20px">Czytaj artykuł →</a>
+        </div>
+      </a>
+
+      <!-- GRID -->
+      <div class="posts-grid">
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Healthcare</div>
+            <h3>Jak dobrać oświetlenie LED do gabinetu lekarskiego?</h3>
+            <p>Temperatura barwowa, CRI, migotanie — co naprawdę ma znaczenie w gabinecie medycznym.</p>
+            <div class="post-card__meta"><span>21.04.2026 · 12 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Energooszczędność</div>
+            <h3>Jak obniżyć koszty energii w firmie dzięki LED — realne dane z 3 wdrożeń</h3>
+            <p>Oszczędności 40–65% na energii elektrycznej w przeliczeniu na rok. Prezentujemy twarde liczby.</p>
+            <div class="post-card__meta"><span>14.04.2026 · 10 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Gastronomia</div>
+            <h3>HACCP a oświetlenie — co mówią przepisy i jak EVSun spełnia wymagania</h3>
+            <p>Wymagania sanitarne dla kuchni profesjonalnych i jak dobór opraw IP65 wpływa na audyt HACCP.</p>
+            <div class="post-card__meta"><span>07.04.2026 · 9 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Projektowanie</div>
+            <h3>Jak zaprojektować oświetlenie biura pod WELL Building Standard?</h3>
+            <p>Wymagania WELL v2 dla kategorii Light — minimalne natężenie, CRI, modulacja, circadian lighting.</p>
+            <div class="post-card__meta"><span>01.04.2026 · 14 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Technologia</div>
+            <h3>Blue Care — dlaczego ograniczenie niebieskiego spektrum poprawia sen i koncentrację</h3>
+            <p>Wpływ CCT i niebieskiego spektrum na melatoninę, sen i produktywność. Co mówi nauka.</p>
+            <div class="post-card__meta"><span>24.03.2026 · 11 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+        <a href="blog.html" class="post-card">
+          <div class="post-card__ph ph"><div class="ph__label">Cover 1200×675</div></div>
+          <div class="post-card__body">
+            <div class="post-card__cat">Aktualności</div>
+            <h3>EVSun EVLN w szpitalu powiatowym — wyniki po 60 dniach monitoringu IAQ</h3>
+            <p>Analiza wyników badania jakości powietrza (IAQ) przed wdrożeniem i po 60 dniach ciągłej pracy opraw.</p>
+            <div class="post-card__meta"><span>17.03.2026 · 7 min</span><span class="post-card__read">Czytaj →</span></div>
+          </div>
+        </a>
+      </div>
+
+      <div style="display:flex;justify-content:center;margin-top:32px;gap:8px;align-items:center">
+        <button class="btn btn--ghost btn--sm" disabled style="opacity:0.4">←</button>
+        <button class="btn btn--primary btn--sm" style="width:38px;padding:0">1</button>
+        <button class="btn btn--ghost btn--sm" style="width:38px;padding:0">2</button>
+        <button class="btn btn--ghost btn--sm" style="width:38px;padding:0">3</button>
+        <button class="btn btn--ghost btn--sm">→</button>
+      </div>
+    </div>
+
+    <aside class="blog-sidebar">
+      <div class="sidebar-widget">
+        <h4>Popularne artykuły</h4>
+        <div class="popular-post"><span class="popular-post__num">01</span><div><div class="popular-post__title">Jak działa technologia EVLN?</div><div class="popular-post__meta">8 min · 2 840 odczytań</div></div></div>
+        <div class="popular-post"><span class="popular-post__num">02</span><div><div class="popular-post__title">Dobór oświetlenia do gabinetu lekarskiego</div><div class="popular-post__meta">12 min · 1 920 odczytań</div></div></div>
+        <div class="popular-post"><span class="popular-post__num">03</span><div><div class="popular-post__title">Oszczędności energii — realne dane</div><div class="popular-post__meta">10 min · 1 540 odczytań</div></div></div>
+        <div class="popular-post"><span class="popular-post__num">04</span><div><div class="popular-post__title">HACCP a oświetlenie gastronomiczne</div><div class="popular-post__meta">9 min · 1 210 odczytań</div></div></div>
+      </div>
+      <div class="sidebar-widget">
+        <h4>Newsletter</h4>
+        <p style="font-size:13px;color:var(--ink-3);margin-bottom:12px;line-height:1.5">Nowe artykuły, aktualności EVSun i poradniki — raz w miesiącu.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault();LEDG.toast('Dziękujemy za zapis!')">
+          <input type="email" required placeholder="Twój e-mail" />
+          <button type="submit" class="btn btn--primary">Zapisz się</button>
+        </form>
+      </div>
+      <div class="sidebar-widget">
+        <h4>Tagi</h4>
+        <div class="tag-cloud">
+          <span class="chip">EVLN</span><span class="chip">dezynfekcja</span><span class="chip">LED</span>
+          <span class="chip">szpital</span><span class="chip">HACCP</span><span class="chip">Blue Care</span>
+          <span class="chip">energooszczędność</span><span class="chip">WELL</span><span class="chip">non-flicker</span>
+          <span class="chip">certyfikaty</span><span class="chip">B2B</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  document.querySelectorAll('.cat-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>

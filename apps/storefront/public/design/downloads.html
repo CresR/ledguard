@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Do pobrania — dokumentacja EVSun | LEDGUARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="assets/tokens.css" />
+<style>
+  .crumbs{padding:16px 0;font-size:13px;color:var(--ink-3);border-bottom:1px solid var(--line);}
+  .crumbs a{color:var(--ink-3);} .crumbs a:hover{color:var(--navy);}
+  .crumbs span{color:var(--ink);font-weight:500;} .crumbs .sep{margin:0 10px;color:var(--ink-4);}
+
+  .dl-hero{background:linear-gradient(180deg,var(--tint) 0%,var(--white) 100%);padding:56px 0 40px;border-bottom:1px solid var(--line);}
+  .dl-hero h1{font-size:clamp(30px,3vw,44px);}
+  .dl-hero p{color:var(--ink-2);font-size:16px;margin-top:10px;max-width:640px;}
+
+  .dl-main{padding:48px 0 80px;}
+  .dl-layout{display:grid;grid-template-columns:240px 1fr;gap:40px;align-items:start;}
+
+  /* sidebar nav */
+  .dl-nav{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:8px;position:sticky;top:132px;}
+  .dl-nav a{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 12px;border-radius:8px;
+    font-size:13.5px;font-weight:500;color:var(--ink-2);
+    transition:120ms;
+  }
+  .dl-nav a:hover{background:var(--tint);color:var(--navy);}
+  .dl-nav a.is-active{background:var(--tint);color:var(--navy);font-weight:600;}
+  .dl-nav a svg{color:var(--cyan-600);flex:none;}
+  .dl-nav__divider{height:1px;background:var(--line);margin:6px 0;}
+
+  /* search */
+  .dl-search{position:relative;margin-bottom:24px;}
+  .dl-search input{width:100%;height:46px;padding:0 16px 0 46px;background:var(--white);border:1px solid var(--line-strong);border-radius:10px;font-family:inherit;font-size:14px;color:var(--ink);}
+  .dl-search input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 6px rgba(0,180,216,0.1);}
+  .dl-search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--ink-3);}
+
+  /* filter chips */
+  .dl-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+  .dl-filter{padding:7px 14px;border:1.5px solid var(--line-strong);border-radius:999px;font-size:13px;font-weight:500;color:var(--ink-2);cursor:pointer;background:var(--white);transition:120ms;font-family:inherit;}
+  .dl-filter:hover{border-color:var(--navy);color:var(--navy);}
+  .dl-filter.is-active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+
+  /* category section */
+  .dl-cat{margin-bottom:56px;}
+  .dl-cat__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .dl-cat__head h2{font-size:22px;}
+  .dl-cat__count{font-family:var(--font-mono);font-size:12px;color:var(--ink-3);letter-spacing:0.04em;}
+
+  /* file list */
+  .dl-list{display:grid;gap:10px;}
+  .dl-file{
+    display:grid;grid-template-columns:48px 1fr auto;
+    align-items:center;gap:16px;
+    padding:16px 20px;background:var(--white);
+    border:1px solid var(--line);border-radius:12px;
+    transition:150ms;
+  }
+  .dl-file:hover{border-color:var(--cyan);box-shadow:var(--shadow-sm);}
+  .dl-file__ico{
+    width:48px;height:48px;border-radius:10px;
+    display:grid;place-items:center;flex:none;
+  }
+  .dl-file__ico--pdf{background:#FEE2E2;color:#B91C1C;}
+  .dl-file__ico--zip{background:#FEF3C7;color:#B45309;}
+  .dl-file__ico--dwg{background:rgba(15,31,76,0.08);color:var(--navy);}
+  .dl-file__name{font-size:15px;font-weight:600;color:var(--navy);line-height:1.3;}
+  .dl-file__meta{display:flex;align-items:center;gap:12px;margin-top:4px;flex-wrap:wrap;}
+  .dl-file__tag{font-family:var(--font-mono);font-size:10.5px;padding:3px 8px;border-radius:4px;background:var(--tint);color:var(--navy);letter-spacing:0.04em;}
+  .dl-file__size{font-family:var(--font-mono);font-size:11.5px;color:var(--ink-3);letter-spacing:0.02em;}
+  .dl-file__date{font-size:12px;color:var(--ink-4);}
+  .dl-file__btn{display:flex;align-items:center;gap:8px;}
+  .dl-file__btn .btn{height:36px;padding:0 14px;font-size:13px;white-space:nowrap;}
+
+  @media(max-width:900px){
+    .dl-layout{grid-template-columns:1fr;}
+    .dl-nav{position:static;}
+    .dl-file{grid-template-columns:40px 1fr;gap:12px;}
+    .dl-file__btn{grid-column:1/-1;}
+  }
+</style>
+</head>
+<body>
+<header data-screen-label="07 Downloads" id="ledg-header" data-active="pobierz"></header>
+<div class="crumbs"><div class="shell">
+  <a href="index.html">Strona główna</a><span class="sep">/</span>
+  <span>Do pobrania</span>
+</div></div>
+
+<section class="dl-hero"><div class="shell">
+  <div class="eyebrow">Centrum dokumentów</div>
+  <h1>Dokumentacja techniczna do pobrania</h1>
+  <p>Karty katalogowe, certyfikaty, atesty, deklaracje, raporty z badań, projekty DIALux oraz materiały dla architektów i inwestorów — wszystko w jednym miejscu.</p>
+</div></section>
+
+<section class="dl-main"><div class="shell">
+  <div class="dl-layout">
+
+    <aside class="dl-nav">
+      <a href="#certyfikaty" class="is-active"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Certyfikaty i atesty</a>
+      <a href="#katalogi"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Karty katalogowe</a>
+      <a href="#badania"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>Raporty z badań</a>
+      <a href="#montaz"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/></svg>Instrukcje montażu</a>
+      <div class="dl-nav__divider"></div>
+      <a href="#inwestor"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>Pakiet inwestora</a>
+      <a href="#dialux"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>Projekty DIALux / IES</a>
+      <a href="#marketing"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>Materiały marketingowe</a>
+    </aside>
+
+    <div>
+      <div class="dl-search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" placeholder="Szukaj dokumentu, produktu, certyfikatu…" />
+      </div>
+      <div class="dl-filters">
+        <button class="dl-filter is-active">Wszystkie</button>
+        <button class="dl-filter">PDF</button>
+        <button class="dl-filter">ZIP</button>
+        <button class="dl-filter">PL</button>
+        <button class="dl-filter">EN</button>
+        <button class="dl-filter">Certyfikaty</button>
+        <button class="dl-filter">Karty produktów</button>
+        <button class="dl-filter">Raporty badań</button>
+      </div>
+
+      <!-- CERTYFIKATY -->
+      <div class="dl-cat" id="certyfikaty">
+        <div class="dl-cat__head">
+          <h2>Certyfikaty i atesty</h2>
+          <span class="dl-cat__count">7 plików</span>
+        </div>
+        <div class="dl-list">
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Atest higieniczny PZH — lampy EVSun EVLN</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">PZH</span><span class="dl-file__tag">PL</span><span class="dl-file__size">420 KB</span><span class="dl-file__date">2024-03-15</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Atest PZH.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Atest IBPRS — przemysł spożywczy / HACCP</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">IBPRS</span><span class="dl-file__tag">PL</span><span class="dl-file__size">380 KB</span><span class="dl-file__date">2023-11-08</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Atest IBPRS.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Deklaracja zgodności CE — seria EVLN-PL (panele)</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">CE</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__size">280 KB</span><span class="dl-file__date">2024-01-10</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: CE_EVLN-PL.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--zip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div>
+              <div class="dl-file__name">Komplet deklaracji CE — wszystkie serie (ZIP)</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">CE</span><span class="dl-file__tag">ZIP</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__size">2.1 MB</span><span class="dl-file__date">2024-01-10</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: CE_komplet.zip')">Pobierz</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RAPORTY -->
+      <div class="dl-cat" id="badania">
+        <div class="dl-cat__head">
+          <h2>Raporty z badań laboratoryjnych</h2>
+          <span class="dl-cat__count">5 plików</span>
+        </div>
+        <div class="dl-list">
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">TÜV SÜD Witness Test — raport pełny</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">TÜV SÜD</span><span class="dl-file__tag">EN</span><span class="dl-file__tag">99,71% S. aureus</span><span class="dl-file__size">1.2 MB</span><span class="dl-file__date">2023-09-12</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: TUV_SUD_Witness_Test.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--zip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div>
+              <div class="dl-file__name">UGENE Laboratory — 4 raporty (S. aureus + E. coli, 6h + 24h)</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">UGENE</span><span class="dl-file__tag">EN</span><span class="dl-file__tag">ZIP</span><span class="dl-file__size">3.8 MB</span><span class="dl-file__date">2023-06-20</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: UGENE_4_raporty.zip')">Pobierz</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- KARTY KATALOGOWE -->
+      <div class="dl-cat" id="katalogi">
+        <div class="dl-cat__head">
+          <h2>Karty katalogowe produktów</h2>
+          <span class="dl-cat__count">14 plików</span>
+        </div>
+        <div class="dl-list">
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Karta katalogowa — Panel EVLN-PL (600×600, 300×1200, 600×1200)</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">EVLN-PL</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__size">1.4 MB</span><span class="dl-file__date">2026-01-05</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Karta_EVLN-PL.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Karta katalogowa — Lampa podtynkowa EVLN-DL</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">EVLN-DL</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__size">980 KB</span><span class="dl-file__date">2026-01-05</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Karta_EVLN-DL.pdf')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Katalog produktów 2026 — pełna gama EVSun EVLN</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">Katalog</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__size">24 MB</span><span class="dl-file__date">2026-02-01</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Katalog_2026.pdf')">Pobierz</button></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAKIET INWESTORA -->
+      <div class="dl-cat" id="inwestor">
+        <div class="dl-cat__head">
+          <h2>Pakiet dla inwestora</h2>
+          <span class="dl-cat__count">3 zestawy</span>
+        </div>
+        <div class="dl-list">
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--zip"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div>
+            <div>
+              <div class="dl-file__name">Pakiet inwestora — PEŁNY (certyfikaty + karty + raporty)</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">ZIP</span><span class="dl-file__tag">PL/EN</span><span class="dl-file__tag">Przetargi</span><span class="dl-file__size">18 MB</span><span class="dl-file__date">2026-02-01</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--accent btn--sm" onclick="LEDG.toast('Pobieranie: Pakiet_inwestora_PELNY.zip')">Pobierz</button></div>
+          </div>
+          <div class="dl-file">
+            <div class="dl-file__ico dl-file__ico--pdf"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div>
+              <div class="dl-file__name">Prezentacja technologii EVSun dla inwestorów i zarządów</div>
+              <div class="dl-file__meta"><span class="dl-file__tag">PDF</span><span class="dl-file__tag">PL</span><span class="dl-file__size">8.4 MB</span><span class="dl-file__date">2026-03-10</span></div>
+            </div>
+            <div class="dl-file__btn"><button class="btn btn--primary btn--sm" onclick="LEDG.toast('Pobieranie: Prezentacja_inwestor.pdf')">Pobierz</button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<footer id="ledg-footer"></footer>
+<script src="assets/header.js"></script>
+<script>
+  // Filter buttons
+  document.querySelectorAll('.dl-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.dl-filter').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+    });
+  });
+  // Nav active
+  document.querySelectorAll('.dl-nav a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.querySelectorAll('.dl-nav a').forEach(b => b.classList.remove('is-active'));
+      a.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>
